@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         'primary': 'rgb(76, 64, 237)',
+        'blue-purple': '#4C40ED',
       },
     },
   },
