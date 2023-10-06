@@ -80,8 +80,8 @@ function Provider_Profile() {
             <hr style={{ marginTop: "10px" }} />
             <div style={{ display: "flex", marginTop: "3%" }}>
               <div className="avatar">
-                <div className="w-44 h-54 rounded">
-                  <img src="user1.png" />
+                <div className="xl:w-48 xl:h-52 sm:w-32 sm:h-36 rounded object-contain">
+                  <img src="user1.png" class="w-full h-full object-contain" />
                 </div>
               </div>
               <div
@@ -92,18 +92,10 @@ function Provider_Profile() {
                 }}
               >
                 <div style={{ display: "flex" }}>
-                  <p
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "22px",
-                      color: "black",
-                    }}
-                  >
-                    Mr Abdur Rahman
-                  </p>
+                  <p className="pp-container9">Mr Abdur Rahman</p>
                   &nbsp; &nbsp;
                   <div
-                    className="badge text-blue-purple"
+                    className="badge text-blue-purple pp-container10 "
                     style={{ marginTop: "8px" }}
                   >
                     Electrician
@@ -113,36 +105,39 @@ function Provider_Profile() {
                   <img
                     src="location-pinned.png"
                     alt="Icon Description"
-                    style={{ width: "25px", height: "25px" }}
+                    style={{ width: "25" }}
+                    className="pp-container11"
                   />
-                  &nbsp;South Badda, Dhaka-1212
+                  &nbsp;<p className="pp-container12">South Badda, Dhaka-1212</p>
                 </div>
                 <div className="pp-container4">
                   <img
                     src="Time.png"
                     alt="Icon Description"
                     style={{ width: "25" }}
+                    className="pp-container11"
                   />
-                  &nbsp;Member since 2023
+                  &nbsp;<p className="pp-container12">Member since 2023</p>
                 </div>
                 <div className="pp-container4">
                   <img
                     src="trophy.png"
                     alt="Icon Description"
                     style={{ width: "25" }}
+                    className="pp-container11"
                   />
-                  &nbsp;Hired 14 times
+                  &nbsp;<p className="pp-container12">Hired 14 times</p>
                 </div>
                 <div className="pp-container4">
                   <Icon_info />
-                  &nbsp;50%&nbsp;{" "}
-                  <p style={{ fontWeight: "bold", color: "#4C40ED" }}>
+                  &nbsp;<p className="pp-container12">50%</p>&nbsp;{" "}
+                  <p style={{ fontWeight: "bold", color: "#4C40ED" }}className="pp-container12" >
                     {" "}
                     Verified
                   </p>
                 </div>
 
-                <div style={{ display: "flex" }}>
+                <div className="pp-container7">
                   <button
                     style={{ marginLeft: "5%" }}
                     className="btn bg-blue-purple btn-sm text-white w-24 h-10"
@@ -165,11 +160,7 @@ function Provider_Profile() {
               </div>
             </div>
             <br />
-            <p
-              style={{ fontSize: "20px", fontWeight: "bold", color: "#4C40ED" }}
-            >
-              Service Details
-            </p>
+            <p className="pp-container8">Service Details</p>
             <p style={{ textAlign: "justify", color: "#8E8D8D" }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
               hendrerit varius diam sed pulvinar. Suspendisse pulvinar accumsan
@@ -240,7 +231,7 @@ function Provider_Profile() {
                   marginLeft: "3%",
                 }}
               >
-                Service Urgency
+                Book an appointment
               </p>
               <select
                 className="select select-primary w-full max-w-xs border-blue-purple"

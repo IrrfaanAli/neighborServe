@@ -4,6 +4,7 @@
     height: auto;
     margin: auto;
     margin-top: 2%;
+
 }
 
 .pp-container0>div {
@@ -58,8 +59,9 @@
 }
 
 select option:disabled {
-   color: rgb(177, 174, 174);
-  }
+    color: rgb(177, 174, 174);
+}
+
 .availability-div {
     display: flex;
     flex-direction: column;
@@ -77,7 +79,85 @@ select option:disabled {
 }
 
 .pp-button-active {
-    background-color: #FF5733; /* Change to your desired background color */
-    color: #fff; /* Change to your desired text color */
+    background-color: #FF5733;
+    /* Change to your desired background color */
+    color: #fff;
+    /* Change to your desired text color */
     /* Add any other styles you want for the pressed state */
-  }
+}
+
+.pp-container7 {
+    display: flex;
+}
+
+.pp-container8 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4C40ED;
+}
+
+.pp-container9{
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .pp-container0 {
+        flex-direction: column;
+    }
+
+    .pp-container1 {
+        flex-direction: column;
+    }
+
+    .pp-container7 {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pp-container8 {
+        margin-top: 6%;
+        font-size: 17px;
+    }
+
+    
+}
+
+
+
+/* Media Query for Mobile Phones */
+@media (max-width: 480px) {
+
+    .pp-container0 {
+        flex-direction: column;
+    }
+
+    .pp-container1 {
+        flex-direction: column;
+    }
+
+    .pp-container7 {
+        
+        margin-left: -32%;
+    }
+
+    .pp-container8 {
+        margin-top: 6%;
+        font-size: 17px;
+    }
+    .pp-container9{
+        font-size: 17px;
+    }
+    .pp-container10{
+        display: none;
+    }
+    .pp-container11{
+        width: 17px;
+        height: 19px;
+    }
+    .pp-container12{
+        font-size: 16px;
+    }
+}

@@ -19,11 +19,11 @@ const ProfileComponent = () => {
 
   // Define responsive styles
   const buttonStyles = {
-    marginLeft: screenWidth >= 768 ? "81%" : "1%", // Adjust the breakpoint and margin values as needed
+    marginLeft: screenWidth >= 768 ? "64%" : "1%", // Adjust the breakpoint and margin values as needed
     marginTop: screenWidth >= 768 ? "38%" : "1%",
   };
   const buttonStyles2 = {
-    marginLeft: screenWidth >= 768 ? "81%" : "5%", // Adjust the breakpoint and margin values as needed
+    marginLeft: screenWidth >= 768 ? "64%" : "5%", // Adjust the breakpoint and margin values as needed
     marginTop: screenWidth >= 768 ? "5%" : "1%",
   };
 

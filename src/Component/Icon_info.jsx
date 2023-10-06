@@ -6,7 +6,7 @@ const Icon_info = () => {
     <div>
       {" "}
       <div className="icon-container">
-        <img src="v50.png" alt="" /> {/* Use your icon here */}
+        <img src="v50.png" className="pp-container11" alt="" /> {/* Use your icon here */}
         <div className="pc-item-box">
           <div style={{ display: "flex" }}>
             <img

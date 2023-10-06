@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./styles/browse_service.css"
+import "./styles/browse_service.css";
 
 import Navbar from "./Component/Navbar/Navbar";
 import ElectricalService from "./Component/Services/ElectricalService";
@@ -54,24 +54,23 @@ function Browse_service() {
   return (
     <div>
       <Navbar />
-      <div className="container1" style={containerStyle}>
-        <div className="container2">Hire Professonal Service Providers</div>
+      <div className="bs-container1" style={containerStyle}>
+        <div className="bs-container2">Hire Professonal Service Providers</div>
       </div>
       <br />
 
-      <div className="container4">
-        <p className="p1">
+      <div className="bs-container4">
+        <p className="bs-p1">
           We offer a diverse suite of services, from home maintenance and
           repairs to renovations and installations. Whatever your home needs,
           we've got you covered with expert solutions tailored to your
           preferences.
         </p>
+        bs-
         <br />
         <br />
-
-        <p className="container5">All Services</p>
-
-        <div className="container3">
+        <p className="bs-container5">All Services</p>
+        <div className="bs-container3">
           <ElectricalService />
           <PlumbingService />
           <CleaningService />

@@ -6,7 +6,7 @@
     background-color: #fff;
 }
 
-.container1 {
+.bs-container1 {
     height: 400px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -18,7 +18,7 @@
     transition: background-image 0.5s ease-in-out;
 }
 
-.container2 {
+.bs-container2 {
     color: #fff;
     position: absolute;
     top: 50%;
@@ -32,21 +32,21 @@
 
 }
 
-.container3 {
+.bs-container3 {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     background-color: white;
 }
 
-.container3>div {
+.bs-container3>div {
     font-size: 20px;
     padding: 30px;
     background-color: white;
 }
 
 
-.vertical-line {
+.bs-vertical-line {
     width: 2px;
     /* Adjust the width of the line as needed */
     height: 1000px;
@@ -56,7 +56,7 @@
     margin-left: 2%;
 }
 
-.container4 {
+.bs-container4 {
     display: flex;
     flex-wrap: wrap;
     margin-left: 17%;
@@ -64,12 +64,12 @@
     flex-direction: column;
 }
 
-.container4>div {
+.bs-container4>div {
     color: black;
 
 }
 
-.container5 {
+.bs-container5 {
     margin-left: 2.5%;
 
     font-weight: bold;
@@ -77,7 +77,7 @@
 
 }
 
-.p1 {
+.bs-p1 {
     font-size: 20px;
     display: flex;
     justify-content: center;
@@ -91,30 +91,30 @@
 
 /* Media Query for Tablets and Smaller Screens */
 @media (max-width: 768px) {
-    .container1 {
+    .bs-container1 {
         height: 300px;
         /* Adjust the height for smaller screens */
         margin-top: 20px;
         /* Adjust the margin for smaller screens */
     }
 
-    .container2 {
+    .bs-container2 {
         font-size: 40px;
         /* Adjust font size for smaller screens */
     }
 
-    .p1 {
+    .bs-p1 {
         font-size: 14px;
     }
 
-    .container5 {
+    .bs-container5 {
         font-size: 30px;
     }
 }
 
 /* Media Query for Mobile Phones */
 @media (max-width: 480px) {
-    .container1 {
+    .bs-container1 {
         height: 200px;
         /* Adjust the height for mobile screens */
         margin-top: 10px;
@@ -124,12 +124,12 @@
             font-size: 12px;
         }
 
-        .container5 {
+        .bs-container5 {
             font-size: 20px;
         }
     }
 
-    .container2 {
+    .bs-container2 {
         font-size: 30px;
         /* Adjust font size for mobile screens */
     }

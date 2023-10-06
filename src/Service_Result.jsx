@@ -14,7 +14,7 @@ const Service_Result = () => {
           <p style={{ color: "black", fontWeight: "bold", fontSize: "20px" }}>
             Sort Result
           </p>
-          <br />
+         
           <p>Verification Level</p>
           <select className="select select-info w-max max-w-xs border-blue-purple">
             <option disabled selected>
