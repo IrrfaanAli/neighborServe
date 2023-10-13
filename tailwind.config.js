@@ -20,8 +20,11 @@ export default {
         // => @media (min-width: 1536px) { ... }
       },
       colors: {
+
         primary: "rgb(76, 64, 237)",
         "blue-purple": "#4C40ED",
+        'primary': 'rgb(76, 64, 237)',
+        'secondary': 'rgb(244, 236, 255)'
       },
     },
   },
