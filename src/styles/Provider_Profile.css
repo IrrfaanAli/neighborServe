@@ -78,13 +78,12 @@ select option:disabled {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.pp-button-active {
+/*.pp-button-active 
     background-color: #FF5733;
     /* Change to your desired background color */
-    color: #fff;
+/*color: #fff;
     /* Change to your desired text color */
-    /* Add any other styles you want for the pressed state */
-}
+/* Add any other styles you want for the pressed state */
 
 .pp-container7 {
     display: flex;
@@ -96,11 +95,17 @@ select option:disabled {
     color: #4C40ED;
 }
 
-.pp-container9{
+.pp-container9 {
     font-weight: bold;
     font-size: 22px;
     color: black;
 }
+
+.pp-bt1:hover {
+    color: #4C40ED;
+}
+
+
 
 @media (max-width: 768px) {
     .pp-container0 {
@@ -122,7 +127,7 @@ select option:disabled {
         font-size: 17px;
     }
 
-    
+
 }
 
 
@@ -139,7 +144,7 @@ select option:disabled {
     }
 
     .pp-container7 {
-        
+
         margin-left: -32%;
     }
 
@@ -147,17 +152,21 @@ select option:disabled {
         margin-top: 6%;
         font-size: 17px;
     }
-    .pp-container9{
+
+    .pp-container9 {
         font-size: 17px;
     }
-    .pp-container10{
+
+    .pp-container10 {
         display: none;
     }
-    .pp-container11{
+
+    .pp-container11 {
         width: 17px;
         height: 19px;
     }
-    .pp-container12{
+
+    .pp-container12 {
         font-size: 16px;
     }
 }

@@ -28,18 +28,6 @@ function Provider_Profile() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  const handleParagraphClick = () => {
-    // Add your custom action here
-    window.location.href = "https://www.google.com";
-  };
-  const paragraphStyle = {
-    cursor: "pointer",
-    transition: "color 0.3s ease", // Add a smooth color transition effect
-  };
-
-  const paragraphHoverStyle = {
-    color: "#4C40ED",
-  };
 
   return (
     <div>
@@ -59,23 +47,10 @@ function Provider_Profile() {
         <div className="pp-container1">
           <div className="pp-container2">
             <div style={{ display: "flex" }}>
-              <p
-                id="clickable-paragraph"
-                onClick={handleParagraphClick}
-                onMouseOver={() => {
-                  // Apply hover style when the mouse is over the paragraph
-                  Object.assign(paragraphStyle, paragraphHoverStyle);
-                }}
-                onMouseOut={() => {
-                  // Reset the style when the mouse leaves the paragraph
-                  Object.assign(paragraphStyle, {});
-                }}
-                style={paragraphStyle}
-              >
-                About
-              </p>
-              <p style={{ marginLeft: "4%" }}>Photos</p>
-              <p style={{ marginLeft: "4%" }}>Service History</p>
+              <button className="pp-bt1">About</button>
+              <button className="pp-bt1" style={{ marginLeft: "4%" }}>
+                Service History
+              </button>
             </div>
             <hr style={{ marginTop: "10px" }} />
             <div style={{ display: "flex", marginTop: "3%" }}>
@@ -108,7 +83,8 @@ function Provider_Profile() {
                     style={{ width: "25" }}
                     className="pp-container11"
                   />
-                  &nbsp;<p className="pp-container12">South Badda, Dhaka-1212</p>
+                  &nbsp;
+                  <p className="pp-container12">South Badda, Dhaka-1212</p>
                 </div>
                 <div className="pp-container4">
                   <img
@@ -129,9 +105,12 @@ function Provider_Profile() {
                   &nbsp;<p className="pp-container12">Hired 14 times</p>
                 </div>
                 <div className="pp-container4">
-                  <Icon_info />
+                  <Icon_info index={"./v50.png"} />
                   &nbsp;<p className="pp-container12">50%</p>&nbsp;{" "}
-                  <p style={{ fontWeight: "bold", color: "#4C40ED" }}className="pp-container12" >
+                  <p
+                    style={{ fontWeight: "bold", color: "#4C40ED" }}
+                    className="pp-container12"
+                  >
                     {" "}
                     Verified
                   </p>

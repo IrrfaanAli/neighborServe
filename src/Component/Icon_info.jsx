@@ -1,12 +1,15 @@
 import React from "react";
 import "./Icon_info.css"
 
-const Icon_info = () => {
+const Icon_info = (props) => {
+  const icon1 = props.index;
+  
+  
   return (
     <div>
       {" "}
       <div className="icon-container">
-        <img src="v50.png" className="pp-container11" alt="" /> {/* Use your icon here */}
+        <img src={icon1} className="pp-container11" alt="" /> {/* Use your icon here */}
         <div className="pc-item-box">
           <div style={{ display: "flex" }}>
             <img

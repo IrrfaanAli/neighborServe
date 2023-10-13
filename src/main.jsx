@@ -6,9 +6,10 @@ import "./index.css";
 import Service_Result from "./Service_Result.jsx";
 import Provider_Profile from "./Provider_Profile.jsx";
 import Edit_User from "./Edit_User.jsx";
+import ProfileComponent from "./Component/profileComponent/ProfileComponent.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Browse_service />
+    <Provider_Profile/>
   </React.StrictMode>
 );

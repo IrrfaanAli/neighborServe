@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Component/Navbar/Navbar";
-import ProfileComponent from "./Component/profileComponent/ProfileComponent";
+import PersonList from "./Component/profileComponent/PersonList";
 import "./styles/Service_Result.css";
 const Service_Result = () => {
   return (
@@ -8,13 +8,11 @@ const Service_Result = () => {
       <Navbar />
       <br />
       <div className="sr-container0">
-        <div
-          className="sr-container6"
-        >
+        <div className="sr-container6">
           <p style={{ color: "black", fontWeight: "bold", fontSize: "20px" }}>
             Sort Result
           </p>
-         
+
           <p>Verification Level</p>
           <select className="select select-info w-max max-w-xs border-blue-purple">
             <option disabled selected>
@@ -48,13 +46,9 @@ const Service_Result = () => {
             <option>More verified</option>
             <option>Less verified</option>
           </select>
-          
+
           <hr className="sr-line1"></hr>
-          <ProfileComponent />
-          <ProfileComponent />
-          <ProfileComponent />
-          <ProfileComponent />
-          <ProfileComponent />
+          <PersonList />
         </div>
       </div>
     </div>
