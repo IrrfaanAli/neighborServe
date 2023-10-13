@@ -1,18 +1,17 @@
 import React from "react";
 import Navbar from "./Component/Navbar/Navbar";
 import PersonList from "./Component/profileComponent/PersonList";
+import Footer from "./Component/Footer/Footer";
 import "./styles/Service_Result.css";
 const Service_Result = () => {
   return (
     <div>
-      <Navbar />
       <br />
       <div className="sr-container0">
         <div className="sr-container6">
           <p style={{ color: "black", fontWeight: "bold", fontSize: "20px" }}>
             Sort Result
           </p>
-
           <p>Verification Level</p>
           <select className="select select-info w-max max-w-xs border-blue-purple">
             <option disabled selected>
@@ -51,6 +50,7 @@ const Service_Result = () => {
           <PersonList />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
