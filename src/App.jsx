@@ -1,6 +1,7 @@
 
 import './App.css'
 import Category from './Component/Category/Category'
+import CustomerSupport from './Component/CustomerSupport/CustomerSupport'
 import FeatureProvider from './Component/FeatureProvider/FeatureProvider'
 import Footer from './Component/Footer/Footer'
 import { HeroSection } from './Component/HeroSection/HeroSection'
@@ -17,6 +18,7 @@ function App() {
      <Category></Category>
      <OfferCard></OfferCard>
      <FeatureProvider></FeatureProvider>
+     <CustomerSupport></CustomerSupport>
      <Footer></Footer>
     </>
   )
