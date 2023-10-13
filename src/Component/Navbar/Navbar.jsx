@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import icon from '../../assets/icon.png'
 
@@ -39,6 +40,7 @@ const Navbar = () => {
 </div> 
      </div>
     );
+
 };
 
 export default Navbar;
