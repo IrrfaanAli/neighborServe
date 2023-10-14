@@ -1,5 +1,5 @@
-import icon from '../assets/icon.svg'
 
+import icon from '../../assets/icon.svg'
 const Navbar = () => {
     return (
         <div className='border border-primary'>
