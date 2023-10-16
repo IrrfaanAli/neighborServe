@@ -1,7 +1,7 @@
 import React from "react";
 import "./login.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FcGoogle } from "react-icons/fc";
 
 
