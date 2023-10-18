@@ -13,12 +13,12 @@ function App() {
 
   return (
     <>
-    <Navbar></Navbar>
+    {/* <Navbar></Navbar> */}
     <AboutUs></AboutUs>
     <Policy></Policy>
     <Service_History></Service_History>
     <OnBoard_Verification></OnBoard_Verification>
-    <Footer></Footer>
+    {/* <Footer></Footer> */}
      
     </>
   )
