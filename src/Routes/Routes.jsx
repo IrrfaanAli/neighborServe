@@ -9,11 +9,16 @@ import Service_Result from "../Service_Result";
 import Provider_Profile from "../Provider_Profile";
 import Appointment from "../Component/Appointment";
 import AppointmentDetails from "../Component/AppointmentDetails";
+import Login from "../Login/Login";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+  },
+  {
+    path: "login",
+    element: <Login/>,
   },
   {
     path: "browse_service",
