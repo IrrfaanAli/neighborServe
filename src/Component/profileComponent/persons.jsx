@@ -25,6 +25,27 @@ export const persons = [
         review: "Great electrician service by user 1.",
         date: "August 15, 2022",
       },
+      {
+        reviewId: 2,
+        reviewer: "Mr. Rahman 1",
+        reviewerImg: "./user1.png",
+        review: "Great electrician.",
+        date: "August 15, 2022",
+      },
+      {
+        reviewId: 2,
+        reviewer: "Mr. Rahman 1",
+        reviewerImg: "./user1.png",
+        review: "Great electrician.",
+        date: "August 15, 2022",
+      },
+      {
+        reviewId: 2,
+        reviewer: "Mr. Rahman 1",
+        reviewerImg: "./user1.png",
+        review: "Great electrician.",
+        date: "August 15, 2022",
+      },
     ],
   },
   {

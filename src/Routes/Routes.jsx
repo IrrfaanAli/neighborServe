@@ -6,10 +6,12 @@ import AdminDashboard from "../Component/AdminDashboard/AdminDashboard";
 import ProviderDashboard from "../Component/ProviderDashboard/ProviderDashboard";
 import Browse_service from "../Browse_service";
 import Service_Result from "../Service_Result";
-import Provider_Profile from "../Provider_Profile"
-import Registration from "../Registration";
+
+import Provider_Profile from "../Provider_Profile";
+import Appointment from "../Component/Appointment";
+import AppointmentDetails from "../Component/AppointmentDetails";
 import Login from "../Login/Login";
-import Service from "../Service";
+
 
 export const router = createBrowserRouter([
   {
@@ -17,16 +19,8 @@ export const router = createBrowserRouter([
     element: <App></App>,
   },
   {
-    path: "reg",
-    element: <Registration></Registration>,
-  },
-  {
     path: "login",
-    element: <Login></Login>,
-  },
-  {
-    path: "service",
-    element: <Service></Service>,
+    element: <Login/>,
   },
   {
     path: "browse_service",
@@ -38,7 +32,15 @@ export const router = createBrowserRouter([
   },
   {
     path: "provider_profile/:searchString",
-    element: <Provider_Profile/>,
+    element: <Provider_Profile />,
+  },
+  {
+    path: "appointment",
+    element: <Appointment />,
+  },
+  {
+    path: "appointment_details/:searchString",
+    element: <AppointmentDetails />,
   },
   {
     path: "dashboard",
