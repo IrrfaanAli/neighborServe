@@ -1,13 +1,15 @@
 import React from "react";
 import "./login.css";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FcGoogle } from "react-icons/fc";
+import Navbar from "../Component/Navbar/Navbar";
+import Footer from "../Component/Footer/Footer";
 
 
 function Login() {
   return (
-    <div className="whole-div">
+   <> 
+    <Navbar></Navbar>
+    <div>
       <div className="l-container0">
         <div className="l-container1">
           <div>
@@ -118,18 +120,19 @@ function Login() {
                 Or, login with:
               </p>
               <div className="social-icons">
-                    
-              <FontAwesomeIcon icon={faFacebook} style={{color: "#046ad7",}} />
-              <FontAwesomeIcon icon={faTwitter} style={{color: "#4386f9",}} />
-              <div>
-              <FcGoogle style={{color: "red" }} /> 
-              </div>
+
+              
+               <div>
+                 <FcGoogle style={{color: "red" }} /> 
+               </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <Footer></Footer>
+    </>
   );
 }
 

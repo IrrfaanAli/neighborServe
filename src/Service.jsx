@@ -1,8 +1,12 @@
 import React from "react";
 import "./service.css";
+import Navbar from "./Component/Navbar/Navbar";
+import Footer from "./Component/Footer/Footer";
 
 function Service(){
     return(
+  <>   
+   <Navbar></Navbar>  
     <div className="service-div">
         <div className="main1">
             <div className="main2">
@@ -131,34 +135,11 @@ function Service(){
                         </button>
 
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
          </div>
     </div>
-
+    <Footer></Footer>
+ </>
 
     );
 }

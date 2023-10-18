@@ -1,8 +1,12 @@
 import React from "react";
 import "./registration.css";
+import Navbar from "./Component/Navbar/Navbar";
+import Footer from "./Component/Footer/Footer";
 
 function Registration(){
     return(
+   <>   
+   <Navbar></Navbar>  
     <div>
         <div className="whole">
             <div className="left">
@@ -98,7 +102,8 @@ function Registration(){
             </div>
          </div>
     </div>
-
+    <Footer></Footer>
+ </>
     );
 }
 
