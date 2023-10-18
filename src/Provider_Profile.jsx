@@ -9,7 +9,6 @@ import Footer from "./Component/Footer/Footer";
 
 function Provider_Profile() {
   const { searchString } = useParams();
-  console.log(searchString);
   const val = +searchString;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -396,7 +395,7 @@ function Provider_Profile() {
             </div>
           </div>
         ))}
-        <Footer/>
+      <Footer />
     </div>
   );
 }
