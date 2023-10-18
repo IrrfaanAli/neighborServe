@@ -1,8 +1,8 @@
-import Service_History from "../components/Service_History";
-import App from "../App";
-import AboutUs from "../components/AboutUs";
-import Policy from "../components/Policy";
-import Onboard_Verification from "../components/Onboard_Verification";
+import Service_History from "../src/components/Service_History";
+import App from "../src/App";
+import AboutUs from "../src/components/AboutUs";
+import Policy from "../src/components/Policy";
+import Onboard_Verification from "../src/components/Onboard_Verification";
 import {
     createBrowserRouter,
     RouterProvider,
