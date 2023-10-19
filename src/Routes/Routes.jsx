@@ -10,6 +10,10 @@ import Provider_Profile from "../Provider_Profile";
 import Appointment from "../Component/Appointment";
 import AppointmentDetails from "../Component/AppointmentDetails";
 import Login from "../Login/Login";
+import AboutUs from "../components/AboutUs";
+import Policy from "../components/Policy";
+import OnBoard_Verification from "../components/Onboard_Verification";
+import Service_History from "../components/Service_History";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +43,22 @@ export const router = createBrowserRouter([
   {
     path: "appointment_details/:searchString",
     element: <AppointmentDetails />,
+  },
+  {
+    path: "about",
+    element: <AboutUs/>,
+  },
+  {
+    path: "policy",
+    element: <Policy/>,
+  },
+  {
+    path: "verify",
+    element: <OnBoard_Verification/>,
+  },
+  {
+    path: "service",
+    element: <Service_History/>,
   },
   {
     path: "dashboard",
