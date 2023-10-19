@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles/browse_service.css";
-
+import { Link, Outlet } from "react-router-dom";
 import Navbar from "./Component/Navbar/Navbar";
 import ElectricalService from "./Component/Services/ElectricalService";
 import PlumbingService from "./Component/Services/PlumbingService";
@@ -14,7 +14,7 @@ import WallRepairService from "./Component/Services/WallRepairService";
 import CarService from "./Component/Services/CarService";
 import CarpentryService from "./Component/Services/CarpentryService";
 import ComputerService from "./Component/Services/ComputerService";
-
+import Footer from "./Component/Footer/Footer";
 function Browse_service() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const backgroundImageUrls = [
@@ -53,7 +53,8 @@ function Browse_service() {
 
   return (
     <div>
-     
+      <Navbar />
+      <Outlet />
       <div className="bs-container1" style={containerStyle}>
         <div className="bs-container2">Hire Professonal Service Providers</div>
       </div>
@@ -66,7 +67,7 @@ function Browse_service() {
           we've got you covered with expert solutions tailored to your
           preferences.
         </p>
-        bs-
+        
         <br />
         <br />
         <p className="bs-container5">All Services</p>
@@ -85,6 +86,7 @@ function Browse_service() {
           <CarService />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
