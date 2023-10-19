@@ -2,6 +2,7 @@ import React from 'react';
 import p from '../assets/3.jpg';
 import home from '../assets/home.png';
 import user from '../assets/user.png';
+import Dashboard from '../Component/Dashboard/Dashboard';
 import { Link } from 'react-router-dom';
 
 const SH_SideNav = () => {
@@ -17,7 +18,7 @@ const SH_SideNav = () => {
             <span className='text-primary mt-2'>Abdul Karim</span>
           </li>
 
-          <Link to='/About' className='mx-12 mt-10 '>
+          <Link to='/dashboard' className='mx-12 mt-10 '>
           <button className='hover:bg-primary hover:text-white flex items-center !bg-primary rounded-md'>
              <img src={home} alt="" className='s-3 w-4' />
               <strong>Dashboard</strong>
