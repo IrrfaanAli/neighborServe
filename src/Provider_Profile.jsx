@@ -9,14 +9,29 @@ import Footer from "./Component/Footer/Footer";
 
 function Provider_Profile() {
   const { searchString } = useParams();
-  const val = +searchString;
-
+  // const val = +searchString;
+  console.log("id " + searchString);
   const [isOpen, setIsOpen] = useState(false);
   const availabilityRef = useRef(null);
 
   const toggleDiv = () => {
     setIsOpen(!isOpen);
   };
+
+  const apiUrl = `http://localhost:5000/usersProfile?id=${searchString}`; // Replace with your API endpoint
+  const [dataArray, setDataArray] = useState([]);
+
+  useEffect(() => {
+    // Use the useEffect hook to fetch data when the component mounts
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataArray(data); // Update the state with the fetched data
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   // Event listener to close the div when clicking outside
   useEffect(() => {
@@ -38,8 +53,8 @@ function Provider_Profile() {
   return (
     <div>
       <Navbar />
-      {persons
-        .filter((person) => person.user_id === val)
+      {dataArray
+        // .filter((person) => person.user_id === val)
         .map((person, personIndex) => (
           <div className="pp-container0">
             <div style={{ display: "flex", height: "50px" }}>
@@ -377,7 +392,7 @@ function Provider_Profile() {
                       boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                     }}
                   >
-                    <CommentList user_id={person.user_id} />{" "}
+                    <CommentList userReviews={person.user_reviews} />{" "}
                     <button
                       className="btn btn-sm w-28"
                       style={{

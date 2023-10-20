@@ -4,7 +4,7 @@ import Icon_info from "../Icon_info";
 import { Link, Outlet, useParams } from "react-router-dom";
 const ProfileComponent = (props) => {
   const {
-    user_id,
+    _id,
     user_fullname,
     user_location,
     user_regYear,
@@ -14,7 +14,7 @@ const ProfileComponent = (props) => {
     user_icon,
   } = props;
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  console.log({ user_id });
+
   // Update the screen width state when the window is resized
   useEffect(() => {
     const handleResize = () => {
@@ -95,7 +95,7 @@ const ProfileComponent = (props) => {
             Message
           </button>
 
-          <Link to={`/provider_profile/${user_id}`}>
+          <Link to={`/provider_profile/${_id}`}>
             <button
               style={buttonStyles2}
               className="btn bg-blue-purple btn-xl text-white w-28"

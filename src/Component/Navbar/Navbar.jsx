@@ -36,7 +36,10 @@ const Navbar = () => {
                 <a>Sign Up</a>
               </li>
               <li className="text-xl ">
-                <a>Log In</a>
+                <Link to={"/login"}>
+                  {" "}
+                  <a>Log In</a>{" "}
+                </Link>
               </li>
             </ul>
           </div>
@@ -55,7 +58,7 @@ const Navbar = () => {
             <Link to={""} className="text-xl ml-8 c1">
               Sign Up
             </Link>
-            <Link to={""} className="text-xl ml-8 mr-8 c1">
+            <Link to={"/login"} className="text-xl ml-8 mr-8 c1">
               Log In
             </Link>
             <Link to={"/dashboard/admindashboard"} className="text-xl c1">
@@ -64,10 +67,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div>
-          <button
-            
-            className="bg-primary  text-white p-1 lg:p-2 lg:text-xl rounded-md n-btn1"
-          >
+          <button className="bg-primary  text-white p-1 lg:p-2 lg:text-xl rounded-md n-btn1">
             Become a Pro
           </button>
         </div>

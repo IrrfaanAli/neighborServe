@@ -10,6 +10,7 @@ import Provider_Profile from "../Provider_Profile";
 import Appointment from "../Component/Appointment";
 import AppointmentDetails from "../Component/AppointmentDetails";
 import Login from "../Login/Login";
+import Testing from "../Testing";
 
 export const router = createBrowserRouter([
   {
@@ -17,8 +18,12 @@ export const router = createBrowserRouter([
     element: <App></App>,
   },
   {
-    path: "login",
-    element: <Login/>,
+    path: "testing",
+    element: <Testing />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "browse_service",
