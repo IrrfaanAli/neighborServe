@@ -49,6 +49,7 @@ const Navbar = () => {
               <img className="w-42 h-12" src={icon} alt="" />
             </Link>
           </div>
+        
         </div>
         <div style={{ display: "flex", marginLeft: "26%", width: "1200px" }}>
           <ul>
