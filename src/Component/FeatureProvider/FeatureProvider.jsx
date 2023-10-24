@@ -7,7 +7,7 @@ const FeatureProvider = () => {
 
 useEffect (()=> {
 
-   fetch('/provider.json').then(res =>res.json()).then(data =>SetProvider(data));
+   fetch('http://localhost:5000/users/provider').then(res =>res.json()).then(data =>SetProvider(data));
 },[])
 
 return (
@@ -17,7 +17,7 @@ return (
   
    <div className='grid grid-cols-1 lg:grid-cols-4 gap-0 p-2 lg:p-3 mb-1 ml-5 lg:ml-12'>       
        {provider.map(item => <ProviderCard
-       key={item.id}
+       key={item._id}
        item={item}
        ></ProviderCard>)}
    </div>
