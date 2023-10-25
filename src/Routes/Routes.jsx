@@ -11,6 +11,8 @@ import Provider_Profile from "../Provider_Profile";
 import Appointment from "../Component/Appointment";
 import AppointmentDetails from "../Component/AppointmentDetails";
 import Login from "../Login/Login";
+import Registration from "../Registration";
+import Service from "../Service";
 
 
 export const router = createBrowserRouter([
@@ -22,6 +24,18 @@ export const router = createBrowserRouter([
     path: "login",
     element: <Login/>,
   },
+
+  {
+    path: "reg",
+    element: <Registration/>,
+  },
+
+  {
+    path: "service",
+    element: <Service/>,
+  },
+
+
   {
     path: "browse_service",
     element: <Browse_service></Browse_service>,

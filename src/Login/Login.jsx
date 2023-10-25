@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./login.css";
-<<<<<<< HEAD
-import { FcGoogle } from "react-icons/fc";
-import Navbar from "../Component/Navbar/Navbar";
-import Footer from "../Component/Footer/Footer";
-
-=======
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FcGoogle } from "react-icons/fc";
 import Navbar from "../Component/Navbar/Navbar";
 import Footer from "../Component/Footer/Footer";
->>>>>>> origin/Development
+
 
 function Login() {
   const colors = [
@@ -38,23 +33,9 @@ function Login() {
     return () => clearInterval(interval);
   }, []);
 
+
   return (
-<<<<<<< HEAD
    <> 
-    <Navbar></Navbar>
-    <div>
-      <div className="l-container0">
-        <div className="l-container1">
-          <div>
-            <p
-              style={{
-                display: "flex",
-                color: "white",
-                justifyContent: "center",
-                marginTop: "150px",
-                fontSize: "20px",
-                fontWeight: "bold",
-=======
     <div>
       <Navbar />
       <div>
@@ -74,7 +55,6 @@ function Login() {
               >
                 Welcome to NeighborServe!
               </p>
->>>>>>> origin/Development
 
               <p
                 style={{
@@ -85,30 +65,10 @@ function Login() {
                   marginBottom: "20px",
                 }}
               >
-                New here? Sign in to get started.
+                New here? Sign up to get started.
               </p>
-<<<<<<< HEAD
-              <div className="social-icons">
 
-              
-               <div>
-                 <FcGoogle style={{color: "red" }} /> 
-               </div>
-=======
-
-              {/* <button
-                className="btn"
-                style={{
-                  display: "flex",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  justifyContent: "center",
-                  backgroundColor: "transparent",
-                  color: "white",
-                }}
-              >
-                Sign In
-              </button> */}
+             
               <button
                 style={{
                   display: "flex",
@@ -119,13 +79,17 @@ function Login() {
                 }}
                 className="btn"
               >
-                Sign In
+                <Link to={"/reg"}>
+                            Sign up
+                            </Link>
               </button>
             </div>
           </div>
 
           <div className="l-container2">
             <div>
+
+
               <p
                 style={{
                   display: "flex",
@@ -141,19 +105,28 @@ function Login() {
               >
                 LOGIN TO YOUR ACCOUNT
               </p>
-
+                <div className="l-underline"></div>
+               
               <div className="input-container">
+
+
+                
                 <input
-                  type="text"
-                  placeholder="Enter username"
+                  type="email"
+                  placeholder="Enter email"
                   className="input-field"
+        
                 />
+
                 <input
                   type="password"
                   placeholder="Password"
                   className="input-field"
+                  
                 />
+					    
               </div>
+              
 
               <p
                 style={{
@@ -166,24 +139,7 @@ function Login() {
                 <button className="l-r">Recover Password?</button>
               </p>
 
-              {/* <button
-                className="btn"
-                style={{
-                  display: "flex",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  justifyContent: "center",
-                  marginTop: "20px",
-                  width: "50%",
-                  padding: "10px",
-                  border: "1px",
-                  borderRadius: "10px",
-                  backgroundColor: "#4C40ED",
-                  color: "white",
-                }}
-              >
-                Sign In
-              </button> */}
+             
               <button
                 style={{
                   color: "white",
@@ -196,8 +152,11 @@ function Login() {
                 }}
                 className="btn btn-primary"
               >
-                Primary
+                  Sign in
               </button>
+
+              
+
               <div className="social-login">
                 <p style={{ textAlign: "center", marginTop: "20px" }}>
                   Or, login with:
@@ -215,7 +174,6 @@ function Login() {
                     <FcGoogle style={{ color: "red" }} />
                   </div>
                 </div>
->>>>>>> origin/Development
               </div>
             </div>
           </div>
@@ -228,7 +186,6 @@ function Login() {
       <br />
       <br />
       <br />
-      <Footer />
     </div>
     <Footer></Footer>
     </>

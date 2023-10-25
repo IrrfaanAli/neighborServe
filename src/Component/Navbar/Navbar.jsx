@@ -36,7 +36,9 @@ const Navbar = () => {
                 <a>Sign Up</a>
               </li>
               <li className="text-xl ">
-                <a>Log In</a>
+                <Link to={"/login"}>
+                  <a>Login</a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -52,10 +54,10 @@ const Navbar = () => {
             <Link to={"/browse_service"} className="text-xl c1">
               Services
             </Link>
-            <Link to={""} className="text-xl ml-8 c1">
+            <Link to={"/reg"} className="text-xl ml-8 c1">
               Sign Up
             </Link>
-            <Link to={""} className="text-xl ml-8 mr-8 c1">
+            <Link to={"/login"} className="text-xl ml-8 mr-8 c1">
               Log In
             </Link>
             <Link to={"/dashboard/admindashboard"} className="text-xl c1">
@@ -65,10 +67,13 @@ const Navbar = () => {
         </div>
         <div>
           <button
-            
+
             className="bg-primary  text-white p-1 lg:p-2 lg:text-xl rounded-md n-btn1"
           >
+            <Link to={"/service"}>
             Become a Pro
+            </Link>
+            {/* Become a Pro */}
           </button>
         </div>
       </div>

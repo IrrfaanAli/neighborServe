@@ -1,3 +1,15 @@
+.s-underline{
+  width: 70px;
+  height: 4px;
+  margin-top: 4px;
+  background: #570DF8;
+  border-radius: 9px;
+  display: flex;
+  margin-left: 110px;
+  margin-right: auto;
+  justify-content: center;
+}
+
 .main1{
 
     margin-top: 3%;
@@ -14,7 +26,7 @@
     border-radius: 15px;
 
 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .main2{
@@ -30,7 +42,7 @@
 
 .main3{
     width: 40%;
-    background-image: url('public/background2.jpg');
+    background-image: url('./bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-color: rgba(0,0,0,0,5);
