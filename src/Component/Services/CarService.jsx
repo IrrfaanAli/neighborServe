@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link, Outlet } from "react-router-dom";
 export const CarService = () => {
   return (
     <div>
@@ -10,7 +10,10 @@ export const CarService = () => {
         <div className="card-body flex justify-center items-center">
           <h2 className="card-title text-black s-con1" style={{textAlign:"center"}}>Car Wash Service</h2>
           <div className="card-actions justify-end">
-            <button class="btn1">Browse</button>
+          <Link to={"/search_result/Car Wash Service"}>
+              {" "}
+              <button class="btn1">Browse</button>
+            </Link>
           </div>
         </div>
       </div>

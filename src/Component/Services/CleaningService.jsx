@@ -1,5 +1,6 @@
 import React from "react";
 import "./service.css";
+import { Link, Outlet } from "react-router-dom";
 export const CleaningService = () => {
   return (
     <div>
@@ -10,7 +11,10 @@ export const CleaningService = () => {
         <div className="card-body flex justify-center items-center">
           <h2 className="card-title text-black s-con1" style={{textAlign:"center"}}>Cleaning Service</h2>
           <div className="card-actions justify-end">
-            <button class="btn1">Browse</button>
+          <Link to={"/search_result/Cleaner"}>
+              {" "}
+              <button class="btn1">Browse</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -11,6 +11,8 @@ import Appointment from "../Component/Appointment";
 import AppointmentDetails from "../Component/AppointmentDetails";
 import Login from "../Login/Login";
 import Testing from "../Testing";
+import Testing2 from "../Testing2";
+import Testing3 from "../Testing3";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ export const router = createBrowserRouter([
   {
     path: "testing",
     element: <Testing />,
+  },
+  {
+    path: "testing2",
+    element: <Testing2 />,
+  },
+  {
+    path: "testing3",
+    element: <Testing3 />,
   },
   {
     path: "/login",

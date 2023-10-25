@@ -16,7 +16,7 @@ export const PlumbingService = () => {
             Plumbing Service
           </h2>
           <div className="card-actions justify-end">
-            <Link to={"/search_result/Plumbing Service"}>
+            <Link to={"/search_result/Plumber"}>
               {" "}
               <button class="btn1">Browse</button>
             </Link>

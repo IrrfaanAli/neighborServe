@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import photo from "../../assets/photo-1.jpeg";
-
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const HeroSection = () => {
   const serviceNames = [
@@ -28,7 +29,7 @@ export const HeroSection = () => {
       setTimeout(() => {
         setServiceIndex(serviceIndex + 1);
         setServiceChanged(false);
-      }, 500); // Adjust the delay as needed
+      }, 500);
     } else {
       setServiceIndex(0);
     }
@@ -50,30 +51,40 @@ export const HeroSection = () => {
   const handleFindProsClick = () => {
     if (!isLocationFetched) {
       setLocationFetched(true);
+      const apiKey = "pk.abc469b9f78bca652e6cedf09705e250";
 
-      // Fetch location data
-      const apiKey = "TmIHt8TMoXpQaN0Vsg3jrXOSz5Yj0Zzm";
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
-
-          fetch(
-            `https://www.mapquestapi.com/geocoding/v1/reverse?key=${apiKey}&location=${position.coords.latitude},${position.coords.longitude}&includeRoadMetadata=true&includeNearestIntersection=true`
-          )
+          const apiUrl = `https://us1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`;
+          fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => {
-              const results = data.results[0];
-              const location = results.locations[0];
-              const formattedAddress1 = location.street;
-              let formattedAddress2 = location.adminArea6;
+              const fullAddress = data.display_name;
+              const dhakaIndex = fullAddress.indexOf("Dhaka");
+              const slicedAddress =
+                dhakaIndex !== -1
+                  ? fullAddress.slice(0, dhakaIndex + "Dhaka".length)
+                  : fullAddress;
+              const userAddress = slicedAddress;
+              setAddress(userAddress);
+              const userId = "6539050b42f0df37db9d2d36";
+              const apiUrl1 = `http://localhost:5000/update_location/${userId}`;
+              const data1 = {
+                user_lat: position.coords.latitude,
+                user_lon: position.coords.longitude,
+                user_location: userAddress,
+              };
 
-              if (formattedAddress2 === "গুলশান") {
-                formattedAddress2 = "Gulshan";
-              }
-              const formattedAddress =
-                formattedAddress1 + ", " + formattedAddress2;
-              setAddress(formattedAddress);
+              axios
+                .patch(apiUrl1, data1)
+                .then((response) => {
+                  console.log(response.data);
+                })
+                .catch((error) => {
+                  console.error(error);                 
+                });
             })
             .catch((error) => {
               console.error("Error fetching address:", error);
@@ -89,23 +100,39 @@ export const HeroSection = () => {
   return (
     <div>
       <div
-        className="flex flex-col lg:flex-row lg:gap-60 "
-        style={{ marginLeft: "100px", style: "red" }}
+        className="flex flex-col lg:flex-row lg:gap-2 "
+        style={{ marginLeft: "5px", style: "red" }}
       >
         <div className="flex lg:w-1/2 lg:p-24 mt-7">
           <div>
-            <img className="lg:w-96 lg:h-96  rounded-full" src={photo} alt="" />
+            <img
+              className="lg:w-96 lg:h-96  rounded-full"
+              src="./user1.png"
+              alt=""
+            />
             <img
               className="lg:w-48 lg:h-48 lg:ml-24 rounded-full "
-              src={photo}
+              src="./user2.png"
               alt=""
             />
           </div>
 
           <div className="flex-col">
-            <img className="lg:w-36 lg:h-36 rounded-full" src={photo} alt="" />
-            <img className="lg:w-48 lg:h-48  rounded-full" src={photo} alt="" />
-            <img className="lg:w-72 lg:h-72  rounded-full" src={photo} alt="" />
+            <img
+              className="lg:w-36 lg:h-36 rounded-full"
+              src="./user3.png"
+              alt=""
+            />
+            <img
+              className="lg:w-48 lg:h-48  rounded-full"
+              src="./user4.png"
+              alt=""
+            />
+            <img
+              className="lg:w-72 lg:h-72  rounded-full"
+              src="./user5.png"
+              alt=""
+            />
           </div>
         </div>
         <div className="lg:w-1/2 mx-5 text-center my-7 lg:my-36 ">
@@ -121,7 +148,7 @@ export const HeroSection = () => {
             </span>{" "}
             Service
           </h1>
-          <div className="lg:mx-[150px] ">
+          <div className="lg:mx-[-15px] ">
             {/* <input
             type="text"
             placeholder="Search for exparts"
@@ -135,20 +162,20 @@ export const HeroSection = () => {
               <div
                 style={{
                   display: "flex",
-                  width: "560px",
+                  width: "785px",
                   height: "60px",
                   marginTop: "2%",
                   alignItems: "center",
                   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                   borderRadius: "10px",
-                  marginLeft: "15px",
+                  marginRight: "50px",
                 }}
               >
                 <div
                   style={{
                     outline: "none",
                     height: "40px",
-                    width: "400px",
+                    width: "625px",
                     marginLeft: "10px",
                     borderRadius: "7px",
                     border: "1px solid #4C40ED",
@@ -157,12 +184,20 @@ export const HeroSection = () => {
                   }}
                 >
                   {isLocationFetched ? (
-                    <p style={{ fontWeight: "bold", marginLeft: "15px" }}>
-                      {address}
-                    </p>
+                    <input
+                      style={{
+                        backgroundColor: "white",
+                        marginLeft: "2%",
+                        fontWeight: "bold",
+                      }}
+                      disabled
+                      type="text"
+                      value={address}
+                      // onChange={(e) => setUserLocation(e.target.value)}
+                    />
                   ) : (
-                    <p style={{ color: "#B7C8E6", marginLeft: "15px" }}>
-                      Your Location
+                    <p style={{ color: "#B7C8E6", marginLeft: "2%" }}>
+                      Your location
                     </p>
                   )}
                 </div>
@@ -174,12 +209,15 @@ export const HeroSection = () => {
                     onClick={handleFindProsClick}
                   />
                 </button>
-                <button
-                  className="btn btn-primary"
-                  style={{ marginLeft: "5px", color: "white" }}
-                >
-                  Find Pros
-                </button>
+                <Link to={"/browse_service"}>
+                  {" "}
+                  <button
+                    className="btn btn-primary"
+                    style={{ marginLeft: "5px", color: "white" }}
+                  >
+                    Find Pros
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
