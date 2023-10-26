@@ -10,11 +10,26 @@ import ProviderDashboard from "../Component/ProviderDashboard/ProviderDashboard"
 import TypeProvider from "../Component/TypeProvider/TypeProvider";
 import ProviderDetails from "../Component/ProviderDetails/ProviderDetails";
 import ProviderAccountDetails from "../Component/ProviderAccountDetails/ProviderAccountDetails";
+import Login from "../Component/Login/Login";
+import Registration from "../Component/Registration/Registration";
+import ProviderLogin from "../Component/Login/ProviderLogin";
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <App></App>,
+    },
+    {
+      path: "/login",
+      element: <Login/>,
+    },
+  
+    {
+      path: "/reg",
+      element: <Registration/>,
+    },{
+       path: "/service",
+       element: <ProviderLogin></ProviderLogin>
     },
     {
         path : '/users/provider/:type',
