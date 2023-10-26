@@ -47,12 +47,13 @@ export const router = createBrowserRouter([
     path: "provider_profile/:searchString",
     element: <Provider_Profile />,
   },
+ 
   {
-    path: "appointment",
+    path: "view_appointment/:searchString",
     element: <Appointment />,
   },
   {
-    path: "appointment_details/:searchString",
+    path: "appointment_details/:searchString/:appointmentId", // Include searchString and appointmentId
     element: <AppointmentDetails />,
   },
   {

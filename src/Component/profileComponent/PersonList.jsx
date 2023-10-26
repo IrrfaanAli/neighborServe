@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { persons } from "./persons";
 import ProfileComponent from "./ProfileComponent";
 const PersonList = ({ searchString }) => {
   const x = searchString;

@@ -3,14 +3,20 @@ import Navbar from "./Component/Navbar/Navbar";
 import "./styles/Provider_Profile.css";
 import Icon_info from "./Component/Icon_info";
 import { Link, Outlet, useParams } from "react-router-dom";
-import { persons } from "./Component/profileComponent/persons";
 import CommentList from "./Component/Comment";
 import Footer from "./Component/Footer/Footer";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 function Provider_Profile() {
+  const [selectedSlot, setSelectedSlot] = useState(""); // State to store selected time slot
+  const [note, setNote] = useState("");
+  const [homeAddress, sethomeAddress] = useState("");
+  const [address, setAddress] = useState("");
+  const [availableSlots, setAvailableSlots] = useState([]); // Replace with your available slots
+  const [dataArray, setDataArray] = useState([]);
+  const [dayStatus, setdayStatus] = useState("Today");
   const { searchString } = useParams();
-  // const val = +searchString;
-  console.log("id " + searchString);
   const [isOpen, setIsOpen] = useState(false);
   const availabilityRef = useRef(null);
 
@@ -19,21 +25,18 @@ function Provider_Profile() {
   };
 
   const apiUrl = `http://localhost:5000/usersProfile?id=${searchString}`; // Replace with your API endpoint
-  const [dataArray, setDataArray] = useState([]);
 
   useEffect(() => {
-    // Use the useEffect hook to fetch data when the component mounts
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        setDataArray(data); // Update the state with the fetched data
+        setDataArray(data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
 
-  // Event listener to close the div when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -49,6 +52,83 @@ function Provider_Profile() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const apiUrl1 = `http://localhost:5000/appointment?id=${searchString}`; // Replace with your API endpoint
+
+  useEffect(() => {
+    fetch(apiUrl1)
+      .then((response) => response.json())
+      .then((data) => {
+        setAvailableSlots(data.availableTimeSlots);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [apiUrl]);
+
+  function renderFreeSlots() {
+    if (!availableSlots) {
+      return (
+        <option value="" disabled>
+          Select a time slot
+        </option>
+      );
+    }
+
+    return availableSlots.map((slot) => (
+      <option key={slot} value={slot}>
+        {slot}
+      </option>
+    ));
+  }
+
+  function generateAppointmentId() {
+    const timestamp = new Date().getTime();
+    const randomNum = Math.floor(Math.random() * 1000); // Adjust the range as needed
+    return `${timestamp}-${randomNum}`;
+  }
+  function formatDateToDDMMYYYY(date) {
+    const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+    return date.toLocaleDateString(undefined, options);
+  }
+
+  const reqAppoint = () => {
+    const apiUrl2 = `http://localhost:5000/create-appointment/${searchString}`;
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const newAppointment = {
+      appointmentId: generateAppointmentId(),
+      pro_id: searchString,
+      pro_name: dataArray[0].user_fullname,
+      pro_category: dataArray[0].user_category,
+      user_fullname: "Abir",
+      user_id: "653754887e017102b9240acb",
+      dateAdded: formatDateToDDMMYYYY(new Date()),
+      appointmentTime: selectedSlot,
+      appointmentDate: formatDateToDDMMYYYY(
+        dayStatus === "Tomorrow" ? tomorrow : today
+      ),
+      homeAddress: homeAddress,
+      note: note,
+    };
+    // Make a POST request to the server to save the new appointment
+    axios
+      .post(apiUrl2, newAppointment)
+      .then((response) => {
+        // alert("Service requested!");
+
+        // After 3 seconds, navigate to a different page (replace '/your-page' with your desired route)
+        // setTimeout(() => {
+        //   history.push("/appointment");
+        // }, 3000);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error(error);
+      });
+  };
 
   return (
     <div>
@@ -284,18 +364,24 @@ function Provider_Profile() {
                         Preffered day for Service
                       </p>
                       <div style={{ display: "flex" }}>
-                        <button
+                        {/* <button
                           style={{ marginLeft: "12.5%", marginTop: "3%" }}
-                          className="btn bg-blue-purple btn-sm text-white w-32 h-10"
+                          className={`btn bg-blue-purple btn-sm text-white w-32 h-10 ${
+                            dayStatus === "Today" ? "active" : ""
+                          }`}
+                          // onClick={() => handleDayChange("Today")}
                         >
                           Today
-                        </button>{" "}
-                        <button
+                        </button>{" "} */}
+                        {/* <button
                           style={{ marginLeft: "3%", marginTop: "3%" }}
-                          className="btn bg-blue-purple btn-sm text-white w-32 h-10"
+                          className={`btn bg-blue-purple btn-sm text-white w-32 h-10 ${
+                            dayStatus === "Tomorrow" ? "active" : ""
+                          }`}
+                          // onClick={() => handleDayChange("Tomorrow")}
                         >
                           Tomorrow
-                        </button>
+                        </button> */}
                       </div>
 
                       <p
@@ -309,6 +395,7 @@ function Provider_Profile() {
                       </p>
 
                       <select
+                       mandatory
                         className="select select-primary w-full max-w-xs border-blue-purple"
                         style={{
                           marginTop: "1%",
@@ -316,16 +403,23 @@ function Provider_Profile() {
                           marginRight: "auto",
                           borderRadius: "5px",
                         }}
+                        value={selectedSlot}
+                        onChange={(e) => setSelectedSlot(e.target.value)}
                       >
-                        <option disabled selected>
-                          Choose free slot
-                        </option>
-                        <option disabled>10am-12pm</option>
-                        <option>12pm-2pm</option>
-                        <option disabled>2pm-4pm</option>
-                        <option>4pm-6pm</option>
+                        {renderFreeSlots()}
                       </select>
-
+                      <p style={{ marginTop: "5px", fontWeight: "bold" }}>
+                        Your Address{" "}
+                      </p>
+                      <input
+                        mandatory
+                        style={{ marginLeft: "auto", marginRight: "auto" }}
+                        type="text"
+                        placeholder="Your address"
+                        className="input input-bordered input-primary w-full max-w-xs"
+                        value={homeAddress}
+                        onChange={(e) => sethomeAddress(e.target.value)}
+                      />
                       <p
                         style={{
                           fontWeight: "bold",
@@ -336,16 +430,39 @@ function Provider_Profile() {
                         Leave note
                       </p>
                       <textarea
-                        style={{ marginTop: "2%" }}
-                        className="textarea textarea-primary"
+                        style={{
+                          marginTop: "2%",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                        }}
+                        className="textarea textarea-primary w-[330px]"
                         placeholder="Please leave any additional notes or information here..."
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
                       ></textarea>
-                      <button
-                        style={{ marginLeft: "0%", marginTop: "3%" }}
-                        className="btn bg-blue-purple btn-sm text-white w-50 h-10"
-                      >
-                        Request Service
-                      </button>
+
+                      <Link to={`/view_appointment/${searchString}`}>
+                        {" "}
+                        <button
+                          style={{
+                            marginLeft: "29px",
+                            // marginRight: "auto",
+                            marginTop: "3%",
+                          }}
+                          className="btn bg-blue-purple btn-sm text-white w-[300px] h-10"
+                          onClick={() => {
+                            // Execute the reqAppoint function
+                            reqAppoint();
+                            alert("Service requested");
+
+                            setTimeout(() => {
+                              // Navigate to the specified page
+                            }, 3000); // 3000 milliseconds (3 seconds)
+                          }}
+                        >
+                          Request Service
+                        </button>
+                      </Link>
                     </div>
                   )}
                   <div

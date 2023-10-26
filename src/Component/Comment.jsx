@@ -44,7 +44,7 @@ const Comment = ({ reviewer, reviewerImg, date, review }) => {
             fontSize: "12px",
             marginLeft: "12.5%",
 
-            position: "relative",
+            
           }}
         >
           {date}

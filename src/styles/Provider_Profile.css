@@ -1,3 +1,11 @@
+/* Define hover styles for active button */
+.active {
+    background-color: #2d2587; /* Your desired hover background color */;
+    color: white/* Your desired hover text color */;
+    /* Add any other hover styles as needed */
+  }
+  
+
 .pp-container0 {
 
     max-width: 1000px;
