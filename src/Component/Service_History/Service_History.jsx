@@ -1,10 +1,29 @@
 import React from 'react'
-import Navbar from './Navbar/Navbar'
-import Footer from './Footer/Footer'
-import SH_SideNav from './SH_SideNav'
-import data from './data.json'
+import Navbar from '../Navbar/Navbar'
+import Footer from '../Footer/Footer'
+import SH_SideNav from '../SH_SideNav'
+import { useState,useEffect } from 'react'
 
 const Service_History = () => {
+
+  const [serviceHistory, setServiceHistory] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/service_history', {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setServiceHistory(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching service history:', error);
+      });
+  }, []);
+  
+  
+  
+  // console.log
   return (
     <div className=''>
          <Navbar/>
@@ -26,8 +45,8 @@ const Service_History = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((d,id) => (
-            <tr key={id}>
+          {serviceHistory.map((d,_id) => (
+            <tr key={_id}>
               <th></th>
               <td>{d.providerName}</td>
               <td>{d.serviceName}</td>
@@ -39,6 +58,7 @@ const Service_History = () => {
           ))}
         </tbody>
       </table>
+     
     </div>
 
         </div>

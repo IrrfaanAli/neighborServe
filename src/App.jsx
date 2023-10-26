@@ -1,9 +1,9 @@
 
 import './App.css'
-import Policy from './components/Policy'
-import AboutUs from './components/AboutUs'
-import Service_History from './components/Service_History'
-import OnBoard_Verification from './components/Onboard_Verification'
+import Policy from './Component/Policy/Policy'
+import AboutUs from './Component/AboutUs/AboutUs'
+import Service_History from './Component/Service_History/Service_History'
+import OnBoard_Verification from './Component/Onboard_Verification/Onboard_Verification'
 import Category from './Component/Category/Category'
 import CustomerSupport from './Component/CustomerSupport/CustomerSupport'
 import FeatureProvider from './Component/FeatureProvider/FeatureProvider'

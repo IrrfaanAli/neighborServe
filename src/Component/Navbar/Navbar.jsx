@@ -47,7 +47,7 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <div style={{ display: "flex", marginLeft: "26%", width: "1200px" }}>
+        <div style={{ display: "flex", marginLeft: "2%", width: "1100px" }} className="xs:hidden">
           <ul>
             <Link to={"/browse_service"} className="text-xl c1">
               Services
