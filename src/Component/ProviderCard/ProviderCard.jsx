@@ -4,7 +4,7 @@ const ProviderCard = (props) => {
    
     const {user_fullname,user_category,user_img}= props.item;
   return (
-    <div className="my-2 mx-2 lg:my-4 lg:mx-4">
+    <div className="my-2 mx-2 lg:my-4 lg:mx-4 ">
       <div className="card  bg-base-100 shadow-xl ">
         <figure className="px-2 pt-2">
           <img
