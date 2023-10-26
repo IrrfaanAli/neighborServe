@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './Navbar/Navbar';
-import Footer from './Footer/Footer';
-import data from './data.json';
+import Navbar from '../Navbar/Navbar'
+import Footer from '../Footer/Footer'
+
 
 const OnBoard_Verification = () => {
   return (

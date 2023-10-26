@@ -45,7 +45,7 @@ const Dashboard = () => {
                     User List
                   </button>
                 </Link>
-                <Link to={"/dashboard/adminmanageuser"}>
+                <Link to={"/verify"}>
                   <button className="btn btn-outline btn-accent mb-5 w-36">
                     Verify User
                   </button>

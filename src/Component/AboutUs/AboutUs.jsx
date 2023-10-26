@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from './Navbar/Navbar'
-import Footer from './Footer/Footer'
-import icon from '../assets/icon.svg'
+import Navbar from '../Navbar/Navbar'
+import Footer from '../Footer/Footer'
+import icon from '../../assets/icon.svg'
 
 const AboutUs = () => {
   return (

@@ -10,10 +10,10 @@ import Provider_Profile from "../Provider_Profile";
 import Appointment from "../Component/Appointment";
 import AppointmentDetails from "../Component/AppointmentDetails";
 import Login from "../Login/Login";
-import AboutUs from "../components/AboutUs";
-import Policy from "../components/Policy";
-import OnBoard_Verification from "../components/Onboard_Verification";
-import Service_History from "../components/Service_History";
+import AboutUs from "../Component/AboutUs/AboutUs";
+import Policy from "../Component/Policy/Policy";
+import OnBoard_Verification from "../Component/Onboard_Verification/Onboard_Verification"
+import Service_History from "../Component/Service_History/Service_History";
 
 export const router = createBrowserRouter([
   {
