@@ -2,13 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import Navbar from "./Component/Navbar/Navbar";
 import "./styles/Provider_Profile.css";
 import Icon_info from "./Component/Icon_info";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import CommentList from "./Component/Comment";
 import Footer from "./Component/Footer/Footer";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 function Provider_Profile() {
+  const navigate = useNavigate();
   const [selectedSlot, setSelectedSlot] = useState(""); // State to store selected time slot
   const [note, setNote] = useState("");
   const [homeAddress, sethomeAddress] = useState("");
@@ -19,7 +20,7 @@ function Provider_Profile() {
   const { searchString } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const availabilityRef = useRef(null);
-
+  const searchString2 = "653754887e017102b9240acb";
   const toggleDiv = () => {
     setIsOpen(!isOpen);
   };
@@ -93,6 +94,11 @@ function Provider_Profile() {
   }
 
   const reqAppoint = () => {
+    if (!selectedSlot || !homeAddress) {
+      // One or more required fields are missing, display an error or prevent form submission.
+      alert("Please fill in all required fields.");
+      return; // Do not continue with the form submission.
+    }
     const apiUrl2 = `http://localhost:5000/create-appointment/${searchString}`;
     const today = new Date();
     const tomorrow = new Date(today);
@@ -102,8 +108,9 @@ function Provider_Profile() {
       pro_id: searchString,
       pro_name: dataArray[0].user_fullname,
       pro_category: dataArray[0].user_category,
+      pro_img: dataArray[0].user_img,
       user_fullname: "Abir",
-      user_id: "653754887e017102b9240acb",
+      user_id: searchString2,
       dateAdded: formatDateToDDMMYYYY(new Date()),
       appointmentTime: selectedSlot,
       appointmentDate: formatDateToDDMMYYYY(
@@ -116,12 +123,8 @@ function Provider_Profile() {
     axios
       .post(apiUrl2, newAppointment)
       .then((response) => {
-        // alert("Service requested!");
+        navigate(`/view_appointment/${searchString2}`);
 
-        // After 3 seconds, navigate to a different page (replace '/your-page' with your desired route)
-        // setTimeout(() => {
-        //   history.push("/appointment");
-        // }, 3000);
         console.log(response.data);
       })
       .catch((error) => {
@@ -129,6 +132,10 @@ function Provider_Profile() {
         console.error(error);
       });
   };
+
+  function validateForm() {
+    return selectedSlot && homeAddress && note;
+  }
 
   return (
     <div>
@@ -395,7 +402,7 @@ function Provider_Profile() {
                       </p>
 
                       <select
-                       mandatory
+                        required
                         className="select select-primary w-full max-w-xs border-blue-purple"
                         style={{
                           marginTop: "1%",
@@ -412,7 +419,7 @@ function Provider_Profile() {
                         Your Address{" "}
                       </p>
                       <input
-                        mandatory
+                        required
                         style={{ marginLeft: "auto", marginRight: "auto" }}
                         type="text"
                         placeholder="Your address"
@@ -441,28 +448,21 @@ function Provider_Profile() {
                         onChange={(e) => setNote(e.target.value)}
                       ></textarea>
 
-                      <Link to={`/view_appointment/${searchString}`}>
-                        {" "}
-                        <button
-                          style={{
-                            marginLeft: "29px",
-                            // marginRight: "auto",
-                            marginTop: "3%",
-                          }}
-                          className="btn bg-blue-purple btn-sm text-white w-[300px] h-10"
-                          onClick={() => {
-                            // Execute the reqAppoint function
-                            reqAppoint();
-                            alert("Service requested");
+                      {/* <Link to={`/view_appointment/${searchString}`}> */}
+                      <button
+                        style={{
+                          marginLeft: "29px",
+                          marginTop: "3%",
+                        }}
+                        className="btn bg-blue-purple btn-sm text-white w-[300px] h-10"
+                        onClick={() => {
+                          // Execute the reqAppoint function
 
-                            setTimeout(() => {
-                              // Navigate to the specified page
-                            }, 3000); // 3000 milliseconds (3 seconds)
-                          }}
-                        >
-                          Request Service
-                        </button>
-                      </Link>
+                          reqAppoint();
+                        }}
+                      >
+                        Request Service
+                      </button>
                     </div>
                   )}
                   <div

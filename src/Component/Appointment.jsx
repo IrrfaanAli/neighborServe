@@ -5,7 +5,8 @@ import { Link, useParams } from "react-router-dom";
 
 const Appointment = () => {
   const { searchString } = useParams();
-  const apiUrl = `http://localhost:5000/view_appointment/${searchString}`;
+  const searchString2 = "653754887e017102b9240acb";
+  const apiUrl = `http://localhost:5000/view_appointment/${searchString2}`;
   const [dataArray, setDataArray] = useState([]);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const Appointment = () => {
   return (
     <div>
       <Navbar />
+      <h1>User Appointments</h1>
       <div className="at-container1">
         <div className="text-sm breadcrumbs">
           <ul>
@@ -75,7 +77,7 @@ const Appointment = () => {
                     </td>
                     <td>
                       <Link
-                        to={`/appointment_details/${searchString}/${appointment.appointmentId}`}
+                        to={`/appointment_details/${searchString2}/${appointment.appointmentId}`}
                       >
                         <button className="btn btn-primary btn-sm">
                           View details
