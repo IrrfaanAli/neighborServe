@@ -26,6 +26,9 @@ export default {
         'primary': 'rgb(76, 64, 237)',
         'secondary': 'rgb(244, 236, 255)'
       },
+      css: {
+        postcss: './postcss.config.js', // Point to the PostCSS configuration
+      },
     },
   },
   plugins: [require("daisyui")],
