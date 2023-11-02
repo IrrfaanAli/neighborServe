@@ -25,7 +25,7 @@ function Provider_Profile() {
     setIsOpen(!isOpen);
   };
 
-  const apiUrl = `http://localhost:5000/usersProfile?id=${searchString}`; // Replace with your API endpoint
+  const apiUrl = `http://localhost:5000/providers/providersProfile?id=${searchString}`; // Replace with your API endpoint
 
   useEffect(() => {
     fetch(apiUrl)
@@ -54,7 +54,7 @@ function Provider_Profile() {
     };
   }, []);
 
-  const apiUrl1 = `http://localhost:5000/appointment?id=${searchString}`; // Replace with your API endpoint
+  const apiUrl1 = `http://localhost:5000/providers/appointment?id=${searchString}`; // Replace with your API endpoint
 
   useEffect(() => {
     fetch(apiUrl1)
@@ -99,7 +99,7 @@ function Provider_Profile() {
       alert("Please fill in all required fields.");
       return; // Do not continue with the form submission.
     }
-    const apiUrl2 = `http://localhost:5000/create-appointment/${searchString}`;
+    const apiUrl2 = `http://localhost:5000/providers/create-appointment/${searchString}`;
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);

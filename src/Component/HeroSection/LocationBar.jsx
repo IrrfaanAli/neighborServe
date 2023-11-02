@@ -30,7 +30,7 @@ const LocationBar = () => {
               const userAddress = slicedAddress;
               setAddress(userAddress);
               const userId = "6539050b42f0df37db9d2d36";
-              const apiUrl1 = `http://localhost:5000/update_location/${userId}`;
+              const apiUrl1 = `http://localhost:5000/providers/update_location/${userId}`;
               const data1 = {
                 user_lat: position.coords.latitude,
                 user_lon: position.coords.longitude,

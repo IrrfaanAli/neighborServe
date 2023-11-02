@@ -54,12 +54,12 @@ export const HeroSection = () => {
           <div>
             <img
               className="lg:w-96 lg:h-96  rounded-full"
-              src="./user1.png"
+              src="./home-bg1.png"
               alt=""
             />
             <img
               className="lg:w-48 lg:h-48 lg:ml-24 rounded-full "
-              src="./user2.png"
+              src="./home-bg2.png"
               alt=""
             />
           </div>
@@ -67,17 +67,17 @@ export const HeroSection = () => {
           <div className="flex-col">
             <img
               className="lg:w-36 lg:h-36 rounded-full"
-              src="./user3.png"
+              src="./home-bg3.png"
               alt=""
             />
             <img
               className="lg:w-48 lg:h-48  rounded-full"
-              src="./user4.png"
+              src="./home-bg4.png"
               alt=""
             />
             <img
               className="lg:w-72 lg:h-72  rounded-full"
-              src="./user5.png"
+              src="./home-bg5.png"
               alt=""
             />
           </div>

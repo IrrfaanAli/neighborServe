@@ -9,7 +9,7 @@ const AppointmentDetails = () => {
   const [appointment, setAppointment] = useState(null);
   const [isAppointmentCanceled, setIsAppointmentCanceled] = useState(false);
 
-  const apiUrl = `http://localhost:5000/appointment_details/${searchString}/${appointmentId}`;
+  const apiUrl = `http://localhost:5000/providers/appointment_details/${searchString}/${appointmentId}`;
   useEffect(() => {
     fetch(apiUrl)
       .then((response) => response.json())
@@ -24,7 +24,7 @@ const AppointmentDetails = () => {
   const cancelAppointment = () => {
     // Make an API request to cancel the appointment
     fetch(
-      `http://localhost:5000/cancel_appointment/${searchString}/${appointmentId}`,
+      `http://localhost:5000/providers/cancel_appointment/${searchString}/${appointmentId}`,
       {
         method: "DELETE",
       }
