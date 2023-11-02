@@ -62,9 +62,6 @@ export const router = createBrowserRouter([
     path: "appointment_details/:searchString/:appointmentId", // Include searchString and appointmentId
     element: <AppointmentDetails />,
   },
-  
-
-
   {
     path: "/reg",
     element: <Registration/>,
