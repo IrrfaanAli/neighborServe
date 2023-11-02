@@ -2,7 +2,6 @@ import React from "react";
 import "./service.css";
 import { Link, Outlet } from "react-router-dom";
 export const WallRepairService = () => {
-  const val1= 'Wall/Ceiling Repair';
   return (
     <div>
       <div className="card w-64 h-60 bg-base-100 shadow-xl md:w-52 md:h-48 sm:w-40 sm:h-36 lg:w-64 lg:h-60">
@@ -17,8 +16,7 @@ export const WallRepairService = () => {
             Wall/Ceiling Repair
           </h2>
           <div className="card-actions justify-end">
-          <Link to={`/search_result/${val1}`}>
-
+            <Link to={`/search_result/Wall Repair`}>
               {" "}
               <button class="btn1">Browse</button>
             </Link>

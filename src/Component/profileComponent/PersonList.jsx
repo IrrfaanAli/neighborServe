@@ -4,7 +4,7 @@ const PersonList = ({ searchString }) => {
   const x = searchString;
   console.log(x);
 
-  const apiUrl = `http://localhost:5000/users?category=${x}`; // Replace with your API endpoint
+  const apiUrl = `http://localhost:5000/providers/providers?category=${x}`; // Replace with your API endpoint
   const [dataArray, setDataArray] = useState([]);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const PersonList = ({ searchString }) => {
   return (
     <section>
       {dataArrayUpdated
-        .filter((person) => person.user_location.includes(result))
+        // .filter((person) => person.user_location.includes(result))
         .slice(0, 5)
         .map((person, personIndex) => (
           <ProfileComponent {...person} key={person.id} />
