@@ -7,12 +7,12 @@
       },
       {
         "id" : 2,
-        "category": "Plumber",
+        "category": "PlumbingService",
         "icon": "../src/assets/plumber.png"
         
       },{
         "id" : 3,
-        "category": "Cleaning",
+        "category": "CleaningService",
         "icon": "../src/assets/mop.png"
         
       },{
@@ -22,7 +22,7 @@
         
       },{
         "id" : 5,
-        "category": "Painter",
+        "category": "PaintingService",
         "icon": "../src/assets/painter.png"
         
       },{
