@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./styles/browse_service.css";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "./Component/Navbar/Navbar";
@@ -15,7 +15,10 @@ import CarService from "./Component/Services/CarService";
 import CarpentryService from "./Component/Services/CarpentryService";
 import ComputerService from "./Component/Services/ComputerService";
 import Footer from "./Component/Footer/Footer";
+
+
 function Browse_service() {
+  
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const backgroundImageUrls = [
     "image1.jpg",

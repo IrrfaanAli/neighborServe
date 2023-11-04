@@ -6,6 +6,7 @@ const ProfileComponent = (props) => {
   const {
     _id,
     user_fullname,
+    user_email,
     user_location,
     user_regYear,
     user_hireCount,

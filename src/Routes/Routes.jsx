@@ -9,7 +9,6 @@ import Service_Result from "../Service_Result";
 import Provider_Profile from "../Provider_Profile";
 import Appointment from "../Component/Appointment";
 import AppointmentDetails from "../Component/AppointmentDetails";
-
 import Testing from "../Testing";
 import Testing2 from "../Testing2";
 import Testing3 from "../Testing3";
@@ -53,7 +52,7 @@ export const router = createBrowserRouter([
     path: "provider_profile/:searchString",
     element: <Provider_Profile />,
   },
- 
+
   {
     path: "view_appointment/:searchString",
     element: <Appointment />,
@@ -64,44 +63,41 @@ export const router = createBrowserRouter([
   },
   {
     path: "/reg",
-    element: <Registration/>,
-  },{
-     path: "/service",
-     element: <ProviderLogin></ProviderLogin>
+    element: <Registration />,
   },
   {
-      path : '/users/provider/:type',
-      element : <TypeProvider></TypeProvider>,
-      loader: ({params}) => fetch(`http://localhost:5000/users/provider/${params.type}`)
+    path: "/service",
+    element: <ProviderLogin></ProviderLogin>,
   },
   {
-    path : '/users/provider/details/:id',
-    element : <ProviderAccountDetails></ProviderAccountDetails>,
-    loader: ({params}) => fetch(`http://localhost:5000/users/provider/details/${params.id}`)
+    path: "/users/provider/:type",
+    element: <TypeProvider></TypeProvider>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5000/users/provider/${params.type}`),
+  },
+  {
+    path: "/users/provider/details/:id",
+    element: <ProviderAccountDetails></ProviderAccountDetails>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5000/users/provider/details/${params.id}`),
+  },
 
-  },
-   
   {
-      path : 'dashboard',
-      element : <Dashboard></Dashboard>,
-      children : [
-
-         {
-          path : 'userdashboard',
-          element: <UserDashboard></UserDashboard>
-         },
-         {
-           path : 'admindashboard',
-           element : <AdminDashboard></AdminDashboard>
-         },
-        {
-          path: 'providerdashboard',
-          element : <ProviderDashboard></ProviderDashboard>
-        }
-      ]
-  }
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "userdashboard",
+        element: <UserDashboard></UserDashboard>,
+      },
+      {
+        path: "admindashboard",
+        element: <AdminDashboard></AdminDashboard>,
+      },
+      {
+        path: "providerdashboard",
+        element: <ProviderDashboard></ProviderDashboard>,
+      },
+    ],
+  },
 ]);
-
-
-
-

@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ProfileComponent from "./ProfileComponent";
+import { AuthContext } from "../../Providers/AuthProviders";
+
 const PersonList = ({ searchString }) => {
+  const { user } = useContext(AuthContext);
+
   const x = searchString;
   console.log(x);
 
   const apiUrl = `http://localhost:5000/providers/providers?category=${x}`; // Replace with your API endpoint
   const [dataArray, setDataArray] = useState([]);
+  // const [dataArray2, setDataArray2] = useState([]);
+  const [dataArray3, setDataArray3] = useState([]);
 
   useEffect(() => {
     // Use the useEffect hook to fetch data when the component mounts
@@ -19,19 +25,55 @@ const PersonList = ({ searchString }) => {
       });
   }, []);
 
-  let result = "South Badda, Gulshan, Dhaka";
-  let regex = new RegExp(", Dhaka");
-  let modifiedString = result.replace(regex, "");
-  result = modifiedString;
-  let inputString = result;
-  let lastSpaceIndex = inputString.lastIndexOf(",");
+  const userEmail =
+    localStorage.getItem("userEmail") || (user && user.email) || "";
 
-  if (lastSpaceIndex !== -1) {
-    let lastSubstring = inputString.slice(lastSpaceIndex + 1);
-    result = lastSubstring;
-  } else {
-    result = inputString;
+  const apiUrl3 = `http://localhost:5000/providers/getId/${userEmail}`; // Replace with your API endpoint
+
+  useEffect(() => {
+    fetch(apiUrl3)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataArray3(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const userLat = dataArray3.map((item) => item.user_lat);
+  const userLon = dataArray3.map((item) => item.user_lon);
+
+  // const apiUrl2 = `http://localhost:5000/providers/providersProfile/${userEmail}`; // Replace with your API endpoint
+
+  // useEffect(() => {
+  //   fetch(apiUrl2)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setDataArray2(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, []);
+
+  if (!user || dataArray3.length === 0) {
+    return <div>Loading...</div>;
   }
+
+  // let result = "South Badda, Gulshan, Dhaka";
+  // let regex = new RegExp(", Dhaka");
+  // let modifiedString = result.replace(regex, "");
+  // result = modifiedString;
+  // let inputString = result;
+  // let lastSpaceIndex = inputString.lastIndexOf(",");
+
+  // if (lastSpaceIndex !== -1) {
+  //   let lastSubstring = inputString.slice(lastSpaceIndex + 1);
+  //   result = lastSubstring;
+  // } else {
+  //   result = inputString;
+  // }
 
   //haversine algorithm to calculate distances between 2 coordinates
   function toRadians(degrees) {
@@ -54,14 +96,14 @@ const PersonList = ({ searchString }) => {
       Math.cos(lat1Rad) * Math.cos(lat2Rad) * Math.sin(dlon / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c;
-    console.log("distance: " + distance);
+    // console.log("distance: " + distance);
     return distance;
   }
 
   const dataArrayUpdated = dataArray.map((place) => {
     const distance = haversine(
-      23.7745978,
-      90.4219535,
+      userLat,
+      userLon,
       place.user_lat,
       place.user_lon
     );

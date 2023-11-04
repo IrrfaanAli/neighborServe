@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const LocationBar = () => {
+  const { user } = useContext(AuthContext);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [address, setAddress] = useState(null);
   const [isLocationFetched, setLocationFetched] = useState(false);
+
+  const userId = localStorage.getItem("userID");
 
   const handleFindProsClick = () => {
     if (!isLocationFetched) {
@@ -29,7 +33,8 @@ const LocationBar = () => {
                   : fullAddress;
               const userAddress = slicedAddress;
               setAddress(userAddress);
-              const userId = "6539050b42f0df37db9d2d36";
+
+              console.log(userId + " " + userAddress);
               const apiUrl1 = `http://localhost:5000/providers/update_location/${userId}`;
               const data1 = {
                 user_lat: position.coords.latitude,

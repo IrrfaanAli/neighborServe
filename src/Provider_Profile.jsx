@@ -20,7 +20,7 @@ function Provider_Profile() {
   const { searchString } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const availabilityRef = useRef(null);
-  const searchString2 = "653754887e017102b9240acb";
+  const searchString2 = localStorage.getItem("userID");
   const toggleDiv = () => {
     setIsOpen(!isOpen);
   };

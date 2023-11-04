@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 
 const Appointment = () => {
   const { searchString } = useParams();
-  const searchString2 = "653754887e017102b9240acb";
+  const searchString2 = localStorage.getItem("userID");
   const apiUrl = `http://localhost:5000/providers/view_appointment/${searchString2}`;
   const [dataArray, setDataArray] = useState([]);
 
