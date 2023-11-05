@@ -1,8 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../App";
 import Dashboard from "../Component/Dashboard/Dashboard";
-import UserDashboard from "../Component/UserDashboard/UserDashboard";
-import AdminDashboard from "../Component/AdminDashboard/AdminDashboard";
 import ProviderDashboard from "../Component/ProviderDashboard/ProviderDashboard";
 import Browse_service from "../Browse_service";
 import Service_Result from "../Service_Result";
@@ -14,7 +12,15 @@ import AboutUs from "../Component/AboutUs/AboutUs";
 import Policy from "../Component/Policy/Policy";
 import OnBoard_Verification from "../Component/Onboard_Verification/Onboard_Verification"
 import Service_History from "../Component/Service_History/Service_History";
-
+import Testing from "../Testing";
+import Testing2 from "../Testing2";
+import Testing3 from "../Testing3"
+import Registration from "../Component/Registration/Registration"
+import AdminDashboard from "../Component/AdminDashboard/AdminDashboard";
+import TypeProvider from "../Component/TypeProvider/TypeProvider";
+import ProviderAccountDetails from "../Component/ProviderAccountDetails/ProviderAccountDetails";
+import UserDashboard from "../Component/UserDashboard/UserDashboard";
+import ProviderLogin from "../Component/Login/ProviderLogin";
 export const router = createBrowserRouter([
   {
     path: "/",
