@@ -44,7 +44,7 @@ const Comment = ({ reviewer, reviewerImg, date, review }) => {
             fontSize: "12px",
             marginLeft: "12.5%",
 
-            position: "relative",
+            
           }}
         >
           {date}
@@ -63,14 +63,14 @@ const Comment = ({ reviewer, reviewerImg, date, review }) => {
   );
 };
 
-const CommentList = (props) => {
-  const filtered = persons[props.user_id - 1];
+const CommentList = ({ userReviews }) => {
+  // const filtered = persons[props.user_id - 1];
 
   return (
     <div>
-      {filtered.user_reviews.map((review, reviewIndex) => (
+      {userReviews.map((review) => (
         <Comment
-          key={reviewIndex}
+          key={review.reviewId}
           reviewer={review.reviewer}
           reviewerImg={review.reviewerImg}
           date={review.date}

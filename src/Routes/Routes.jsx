@@ -21,8 +21,20 @@ export const router = createBrowserRouter([
     element: <App></App>,
   },
   {
-    path: "login",
-    element: <Login/>,
+    path: "testing",
+    element: <Testing />,
+  },
+  {
+    path: "testing2",
+    element: <Testing2 />,
+  },
+  {
+    path: "testing3",
+    element: <Testing3 />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "browse_service",
@@ -36,12 +48,13 @@ export const router = createBrowserRouter([
     path: "provider_profile/:searchString",
     element: <Provider_Profile />,
   },
+
   {
-    path: "appointment",
+    path: "view_appointment/:searchString",
     element: <Appointment />,
   },
   {
-    path: "appointment_details/:searchString",
+    path: "appointment_details/:searchString/:appointmentId", // Include searchString and appointmentId
     element: <AppointmentDetails />,
   },
   {
@@ -60,6 +73,27 @@ export const router = createBrowserRouter([
     path: "service",
     element: <Service_History/>,
   },
+  {
+    path: "/reg",
+    element: <Registration />,
+  },
+  {
+    path: "/service",
+    element: <ProviderLogin></ProviderLogin>,
+  },
+  {
+    path: "/users/provider/:type",
+    element: <TypeProvider></TypeProvider>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5000/users/provider/${params.type}`),
+  },
+  {
+    path: "/users/provider/details/:id",
+    element: <ProviderAccountDetails></ProviderAccountDetails>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5000/users/provider/details/${params.id}`),
+  },
+
   {
     path: "dashboard",
     element: <Dashboard></Dashboard>,

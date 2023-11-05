@@ -1,5 +1,6 @@
 import React from "react";
 import "./service.css";
+import { Link, Outlet } from "react-router-dom";
 export const WallRepairService = () => {
   return (
     <div>
@@ -15,7 +16,10 @@ export const WallRepairService = () => {
             Wall/Ceiling Repair
           </h2>
           <div className="card-actions justify-end">
-            <button class="btn1">Browse</button>
+            <Link to={`/search_result/Wall Repair`}>
+              {" "}
+              <button class="btn1">Browse</button>
+            </Link>
           </div>
         </div>
       </div>

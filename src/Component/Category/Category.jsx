@@ -15,7 +15,7 @@ const Category = () => {
         <h1 className=' text-xl lg:text-4xl font-semibold my-2 text-center'>Featured Categories</h1>
         <div className='bg-secondary'>
        
-        <div className='grid grid-cols-1 lg:grid-cols-4 gap-0 p-1 lg:p-3 mb-1 ml-5 lg:ml-12'>       
+        <div className='grid grid-cols-1 lg:grid-cols-4 gap-0 p-1 lg:p-3 mb-1 ml-5 lg:ml-12 cursor-pointer'>       
             {category.map(item => <CategoryCard
             key={item.id}
             item={item}

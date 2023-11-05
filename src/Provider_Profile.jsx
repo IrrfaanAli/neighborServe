@@ -2,23 +2,42 @@ import React, { useState, useRef, useEffect } from "react";
 import Navbar from "./Component/Navbar/Navbar";
 import "./styles/Provider_Profile.css";
 import Icon_info from "./Component/Icon_info";
-import { Link, Outlet, useParams } from "react-router-dom";
-import { persons } from "./Component/profileComponent/persons";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import CommentList from "./Component/Comment";
 import Footer from "./Component/Footer/Footer";
+import axios from "axios";
+// import { v4 as uuidv4 } from "uuid";
 
 function Provider_Profile() {
+  const navigate = useNavigate();
+  const [selectedSlot, setSelectedSlot] = useState(""); // State to store selected time slot
+  const [note, setNote] = useState("");
+  const [homeAddress, sethomeAddress] = useState("");
+  const [address, setAddress] = useState("");
+  const [availableSlots, setAvailableSlots] = useState([]); // Replace with your available slots
+  const [dataArray, setDataArray] = useState([]);
+  const [dayStatus, setdayStatus] = useState("Today");
   const { searchString } = useParams();
-  const val = +searchString;
-
   const [isOpen, setIsOpen] = useState(false);
   const availabilityRef = useRef(null);
-
+  const searchString2 = localStorage.getItem("userID");
   const toggleDiv = () => {
     setIsOpen(!isOpen);
   };
 
-  // Event listener to close the div when clicking outside
+  const apiUrl = `http://localhost:5000/providers/providersProfile?id=${searchString}`; // Replace with your API endpoint
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataArray(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -35,11 +54,94 @@ function Provider_Profile() {
     };
   }, []);
 
+  const apiUrl1 = `http://localhost:5000/providers/appointment?id=${searchString}`; // Replace with your API endpoint
+
+  useEffect(() => {
+    fetch(apiUrl1)
+      .then((response) => response.json())
+      .then((data) => {
+        setAvailableSlots(data.availableTimeSlots);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [apiUrl]);
+
+  function renderFreeSlots() {
+    if (!availableSlots) {
+      return (
+        <option value="" disabled>
+          Select a time slot
+        </option>
+      );
+    }
+
+    return availableSlots.map((slot) => (
+      <option key={slot} value={slot}>
+        {slot}
+      </option>
+    ));
+  }
+
+  function generateAppointmentId() {
+    const timestamp = new Date().getTime();
+    const randomNum = Math.floor(Math.random() * 1000); // Adjust the range as needed
+    return `${timestamp}-${randomNum}`;
+  }
+  function formatDateToDDMMYYYY(date) {
+    const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+    return date.toLocaleDateString(undefined, options);
+  }
+
+  const reqAppoint = () => {
+    if (!selectedSlot || !homeAddress) {
+      // One or more required fields are missing, display an error or prevent form submission.
+      alert("Please fill in all required fields.");
+      return; // Do not continue with the form submission.
+    }
+    const apiUrl2 = `http://localhost:5000/providers/create-appointment/${searchString}`;
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const newAppointment = {
+      appointmentId: generateAppointmentId(),
+      pro_id: searchString,
+      pro_name: dataArray[0].user_fullname,
+      pro_category: dataArray[0].user_category,
+      pro_img: dataArray[0].user_img,
+      user_fullname: "Abir",
+      user_id: searchString2,
+      dateAdded: formatDateToDDMMYYYY(new Date()),
+      appointmentTime: selectedSlot,
+      appointmentDate: formatDateToDDMMYYYY(
+        dayStatus === "Tomorrow" ? tomorrow : today
+      ),
+      homeAddress: homeAddress,
+      note: note,
+    };
+    // Make a POST request to the server to save the new appointment
+    axios
+      .post(apiUrl2, newAppointment)
+      .then((response) => {
+        navigate(`/view_appointment/${searchString2}`);
+
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error(error);
+      });
+  };
+
+  function validateForm() {
+    return selectedSlot && homeAddress && note;
+  }
+
   return (
     <div>
       <Navbar />
-      {persons
-        .filter((person) => person.user_id === val)
+      {dataArray
+        // .filter((person) => person.user_id === val)
         .map((person, personIndex) => (
           <div className="pp-container0">
             <div style={{ display: "flex", height: "50px" }}>
@@ -269,18 +371,24 @@ function Provider_Profile() {
                         Preffered day for Service
                       </p>
                       <div style={{ display: "flex" }}>
-                        <button
+                        {/* <button
                           style={{ marginLeft: "12.5%", marginTop: "3%" }}
-                          className="btn bg-blue-purple btn-sm text-white w-32 h-10"
+                          className={`btn bg-blue-purple btn-sm text-white w-32 h-10 ${
+                            dayStatus === "Today" ? "active" : ""
+                          }`}
+                          // onClick={() => handleDayChange("Today")}
                         >
                           Today
-                        </button>{" "}
-                        <button
+                        </button>{" "} */}
+                        {/* <button
                           style={{ marginLeft: "3%", marginTop: "3%" }}
-                          className="btn bg-blue-purple btn-sm text-white w-32 h-10"
+                          className={`btn bg-blue-purple btn-sm text-white w-32 h-10 ${
+                            dayStatus === "Tomorrow" ? "active" : ""
+                          }`}
+                          // onClick={() => handleDayChange("Tomorrow")}
                         >
                           Tomorrow
-                        </button>
+                        </button> */}
                       </div>
 
                       <p
@@ -294,6 +402,7 @@ function Provider_Profile() {
                       </p>
 
                       <select
+                        required
                         className="select select-primary w-full max-w-xs border-blue-purple"
                         style={{
                           marginTop: "1%",
@@ -301,16 +410,23 @@ function Provider_Profile() {
                           marginRight: "auto",
                           borderRadius: "5px",
                         }}
+                        value={selectedSlot}
+                        onChange={(e) => setSelectedSlot(e.target.value)}
                       >
-                        <option disabled selected>
-                          Choose free slot
-                        </option>
-                        <option disabled>10am-12pm</option>
-                        <option>12pm-2pm</option>
-                        <option disabled>2pm-4pm</option>
-                        <option>4pm-6pm</option>
+                        {renderFreeSlots()}
                       </select>
-
+                      <p style={{ marginTop: "5px", fontWeight: "bold" }}>
+                        Your Address{" "}
+                      </p>
+                      <input
+                        required
+                        style={{ marginLeft: "auto", marginRight: "auto" }}
+                        type="text"
+                        placeholder="Your address"
+                        className="input input-bordered input-primary w-full max-w-xs"
+                        value={homeAddress}
+                        onChange={(e) => sethomeAddress(e.target.value)}
+                      />
                       <p
                         style={{
                           fontWeight: "bold",
@@ -321,13 +437,29 @@ function Provider_Profile() {
                         Leave note
                       </p>
                       <textarea
-                        style={{ marginTop: "2%" }}
-                        className="textarea textarea-primary"
+                        style={{
+                          marginTop: "2%",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                        }}
+                        className="textarea textarea-primary w-[330px]"
                         placeholder="Please leave any additional notes or information here..."
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
                       ></textarea>
+
+                      {/* <Link to={`/view_appointment/${searchString}`}> */}
                       <button
-                        style={{ marginLeft: "0%", marginTop: "3%" }}
-                        className="btn bg-blue-purple btn-sm text-white w-50 h-10"
+                        style={{
+                          marginLeft: "29px",
+                          marginTop: "3%",
+                        }}
+                        className="btn bg-blue-purple btn-sm text-white w-[300px] h-10"
+                        onClick={() => {
+                          // Execute the reqAppoint function
+
+                          reqAppoint();
+                        }}
                       >
                         Request Service
                       </button>
@@ -377,7 +509,7 @@ function Provider_Profile() {
                       boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                     }}
                   >
-                    <CommentList user_id={person.user_id} />{" "}
+                    <CommentList userReviews={person.user_reviews} />{" "}
                     <button
                       className="btn btn-sm w-28"
                       style={{

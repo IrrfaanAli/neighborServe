@@ -6,7 +6,6 @@ import "./styles/Service_Result.css";
 import { Link, Outlet, useParams } from "react-router-dom";
 const Service_Result = () => {
   const { searchString } = useParams();
-  console.log("Hello world " + searchString);
   return (
     <div>
       <Navbar />
