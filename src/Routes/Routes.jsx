@@ -18,6 +18,7 @@ import ProviderAccountDetails from "../Component/ProviderAccountDetails/Provider
 import Login from "../Component/Login/Login";
 import Registration from "../Component/Registration/Registration";
 import ProviderLogin from "../Component/Login/ProviderLogin";
+import Testing4 from "../Testing4";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
     element: <Testing3 />,
   },
   {
+    path: "testing4",
+    element: <Testing4 />,
+  },
+  {
     path: "/login",
     element: <Login />,
   },
@@ -44,6 +49,7 @@ export const router = createBrowserRouter([
     path: "browse_service",
     element: <Browse_service></Browse_service>,
   },
+  
   {
     path: "search_result/:searchString",
     element: <Service_Result></Service_Result>,
@@ -61,6 +67,7 @@ export const router = createBrowserRouter([
     path: "appointment_details/:searchString/:appointmentId", // Include searchString and appointmentId
     element: <AppointmentDetails />,
   },
+
   {
     path: "/reg",
     element: <Registration />,
