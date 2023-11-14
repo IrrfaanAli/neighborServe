@@ -9,7 +9,6 @@ import axios from "axios";
 // import { v4 as uuidv4 } from "uuid";
 
 function Provider_Profile() {
-
   const navigate = useNavigate();
   const [selectedSlot, setSelectedSlot] = useState(""); // State to store selected time slot
   const [note, setNote] = useState("");
@@ -194,17 +193,25 @@ function Provider_Profile() {
                         {person.user_category}
                       </div>
                     </div>
-                    <div className="pp-container4">
+                    <div
+                      className="pp-container4"
+                      style={{ marginLeft: "-1%" }}
+                    >
                       <img
-                        src="location-pinned.png"
+                        src="gps.svg"
                         alt="Icon Description"
                         style={{ width: "25" }}
                         className="pp-container11"
                       />
                       &nbsp;
-                      <p className="pp-container12">{person.user_location}</p>
+                      <p
+                        className="pp-container12"
+                        style={{ marginLeft: "-1.2%" }}
+                      >
+                        {person.user_location}
+                      </p>
                     </div>
-                    <div className="pp-container4">
+                    {/* <div className="pp-container4">
                       <img
                         src="Time.png"
                         alt="Icon Description"
@@ -215,16 +222,19 @@ function Provider_Profile() {
                       <p className="pp-container12">
                         Member since {person.user_regYear}
                       </p>
-                    </div>
+                    </div> */}
                     <div className="pp-container4">
                       <img
-                        src="trophy.png"
+                        src="trophy.svg"
                         alt="Icon Description"
-                        style={{ width: "25" }}
+                        style={{ width: "27px", height: "27px" }}
                         className="pp-container11"
                       />
                       &nbsp;
-                      <p className="pp-container12">
+                      <p
+                        className="pp-container12"
+                        style={{ marginLeft: "-0.4%" }}
+                      >
                         Hired {person.user_hireCount} times
                       </p>
                     </div>
@@ -243,8 +253,23 @@ function Provider_Profile() {
                         Verified
                       </p>
                     </div>
+                    <div className="pp-container4" style={{ marginTop: "-4%" }}>
+                      <img src="./Star.svg" alt="" />
+                      &nbsp;
+                      <p
+                        className="pp-container12"
+                        style={{ marginTop: "2.7%" }}
+                      >
+                        {person.user_rating} <span> star rated</span>
+                         
+                      </p>
+                      &nbsp;{" "}
+                    </div>
 
-                    <div className="pp-container7">
+                    <div
+                      className="pp-container7"
+                      style={{ marginTop: "1.5%" }}
+                    >
                       <button
                         style={{ marginLeft: "5%" }}
                         className="btn bg-blue-purple btn-sm text-white w-24 h-10"

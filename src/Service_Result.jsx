@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Component/Navbar/Navbar";
 import PersonList from "./Component/profileComponent/PersonList";
+import PersonList2 from "./Component/profileComponent/PersonList2";
 import Footer from "./Component/Footer/Footer";
 import "./styles/Service_Result.css";
 import { Link, Outlet, useParams } from "react-router-dom";
 const Service_Result = () => {
   const { searchString } = useParams();
+  const [sr, setSr] = useState(2);
   return (
     <div>
       <Navbar />
@@ -33,7 +35,9 @@ const Service_Result = () => {
           <div className="text-sm breadcrumbs text-gray-400">
             <ul>
               <li>
-              <Link to={"/"}><a>Home</a></Link>
+                <Link to={"/"}>
+                  <a>Home</a>
+                </Link>
               </li>
               <li>
                 <Link to={"/browse_service"}>
@@ -54,7 +58,13 @@ const Service_Result = () => {
           </select>
 
           <hr className="sr-line1"></hr>
-          <PersonList searchString={searchString} />
+          {sr === 1 ? (
+            <PersonList searchString={searchString} />
+          ) : (
+            <PersonList2 searchString={searchString} />
+          )}
+
+          {/* <PersonList searchString={searchString} /> */}
         </div>
       </div>
       <Footer />

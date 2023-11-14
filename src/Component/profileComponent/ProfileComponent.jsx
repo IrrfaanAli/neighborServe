@@ -13,6 +13,7 @@ const ProfileComponent = (props) => {
     user_verficationStatus,
     user_img,
     user_icon,
+    user_rating,
   } = props;
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -52,34 +53,54 @@ const ProfileComponent = (props) => {
           <p style={{ fontWeight: "bold", fontSize: "22px", color: "black" }}>
             {user_fullname}
           </p>
-          <div className="pc-container3">
+          <div className="pc-container3" style={{ marginLeft: "-1%" }}>
             <img
-              src="location-pinned.png"
+              src="gps.svg"
               alt="Icon Description"
-              style={{ width: "25px", height: "25px" }}
+              style={{ width: "30px", height: "30px" }}
             />
             &nbsp;{user_location}
           </div>
-          <div className="pc-container3">
+          {/* <div className="pc-container3">
             <img
               src="Time.png"
               alt="Icon Description"
               style={{ width: "25" }}
             />
             &nbsp;Member since {user_regYear}
-          </div>
+          </div> */}
           <div className="pc-container3">
             <img
-              src="trophy.png"
+              src="trophy.svg"
               alt="Icon Description"
-              style={{ width: "25" }}
+              style={{ width: "27px", height: "27px" }}
+              className="pp-container11"
             />
-            &nbsp;Hired {user_hireCount} times
+            &nbsp;
+            <p className="pp-container12" style={{ marginLeft: "-0.4%" }}>
+              Hired {user_hireCount} times
+            </p>
           </div>{" "}
           <div className="pc-container3">
+            <img
+              style={{ height: "27px", width: "27px" }}
+              src="v50.png"
+              alt=""
+            />
             <Icon_info index={user_icon} />
             &nbsp;{user_verficationStatus}&nbsp;{" "}
             <p style={{ fontWeight: "bold", color: "#4C40ED" }}> Verified</p>
+          </div>
+          <div
+            className="pp-container4"
+            style={{ marginTop: "-3%", marginLeft: "0.5%" }}
+          >
+            <img style={{ marginTop: "1%" }} src="./Star.svg" alt="" />
+            &nbsp;
+            <p className="pp-container12" style={{ marginTop: "2.7%" }}>
+              {user_rating} <span> star rated</span>
+            </p>
+            &nbsp;{" "}
           </div>
           <div>
             <p className="pc-container4" style={{ backgroundColor: "#F9EFFB" }}>
