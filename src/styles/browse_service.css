@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Include the "Fira Code" font in your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap');
+
+/* Apply the font to your text */
+.staggered-text {
+  font-family: 'Fira Code', monospace; /* Use the 'Fira Code' font and specify 'monospace' as a fallback */
+}
+
+
 :root {
     background-color: #fff;
 }

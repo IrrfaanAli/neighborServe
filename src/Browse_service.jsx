@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./styles/browse_service.css";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "./Component/Navbar/Navbar";
@@ -15,7 +15,30 @@ import CarService from "./Component/Services/CarService";
 import CarpentryService from "./Component/Services/CarpentryService";
 import ComputerService from "./Component/Services/ComputerService";
 import Footer from "./Component/Footer/Footer";
+import { motion } from "framer-motion";
+
+
 function Browse_service() {
+  const text =
+    " We offer a diverse suite of services, from home maintenance and repairs to renovations and installations. Whatever your home needs, we've got you covered with expert solutions tailored to your preferences.";
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.03, // Adjust the stagger duration between characters
+      },
+    },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const backgroundImageUrls = [
     "image1.jpg",
@@ -61,13 +84,25 @@ function Browse_service() {
       <br />
 
       <div className="bs-container4">
-        <p className="bs-p1">
+        {/* <p className="bs-p1">
           We offer a diverse suite of services, from home maintenance and
           repairs to renovations and installations. Whatever your home needs,
           we've got you covered with expert solutions tailored to your
           preferences.
-        </p>
-        
+        </p> */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          style={{  fontSize:"22px" }}
+          className="staggered-text"
+        >
+          {text.split("").map((char, index) => (
+            <motion.span key={index} variants={textVariants}>
+              {char}
+            </motion.span>
+          ))}
+        </motion.div>
         <br />
         <br />
         <p className="bs-container5">All Services</p>

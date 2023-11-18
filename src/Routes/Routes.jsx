@@ -9,7 +9,6 @@ import Service_Result from "../Service_Result";
 import Provider_Profile from "../Provider_Profile";
 import Appointment from "../Component/Appointment";
 import AppointmentDetails from "../Component/AppointmentDetails";
-
 import Testing from "../Testing";
 import Testing2 from "../Testing2";
 import Testing3 from "../Testing3";
@@ -19,9 +18,13 @@ import ProviderAccountDetails from "../Component/ProviderAccountDetails/Provider
 import Login from "../Component/Login/Login";
 import Registration from "../Component/Registration/Registration";
 import ProviderLogin from "../Component/Login/ProviderLogin";
+<<<<<<< HEAD
 import AdminManageuser from "../Component/AdminDashboard/AdminManageuser";
 import Adminmanageprovider from "../Component/AdminDashboard/Adminmanageprovider";
 import AdminVerifyProvider from "../Component/AdminDashboard/AdminVerifyProvider";
+=======
+import Testing4 from "../Testing4";
+>>>>>>> d94574d6bd6d8e32706e5efad35e020ac444c4e2
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +44,10 @@ export const router = createBrowserRouter([
     element: <Testing3 />,
   },
   {
+    path: "testing4",
+    element: <Testing4 />,
+  },
+  {
     path: "/login",
     element: <Login />,
   },
@@ -48,6 +55,7 @@ export const router = createBrowserRouter([
     path: "browse_service",
     element: <Browse_service></Browse_service>,
   },
+  
   {
     path: "search_result/:searchString",
     element: <Service_Result></Service_Result>,
@@ -56,7 +64,7 @@ export const router = createBrowserRouter([
     path: "provider_profile/:searchString",
     element: <Provider_Profile />,
   },
- 
+
   {
     path: "view_appointment/:searchString",
     element: <Appointment />,
@@ -65,26 +73,30 @@ export const router = createBrowserRouter([
     path: "appointment_details/:searchString/:appointmentId", // Include searchString and appointmentId
     element: <AppointmentDetails />,
   },
+
   {
     path: "/reg",
-    element: <Registration/>,
-  },{
-     path: "/service",
-     element: <ProviderLogin></ProviderLogin>
+    element: <Registration />,
   },
   {
-      path : '/users/provider/:type',
-      element : <TypeProvider></TypeProvider>,
-      loader: ({params}) => fetch(`http://localhost:5000/users/provider/${params.type}`)
+    path: "/service",
+    element: <ProviderLogin></ProviderLogin>,
   },
   {
-    path : '/users/provider/details/:id',
-    element : <ProviderAccountDetails></ProviderAccountDetails>,
-    loader: ({params}) => fetch(`http://localhost:5000/users/provider/details/${params.id}`)
+    path: "/users/provider/:type",
+    element: <TypeProvider></TypeProvider>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5000/users/provider/${params.type}`),
+  },
+  {
+    path: "/users/provider/details/:id",
+    element: <ProviderAccountDetails></ProviderAccountDetails>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5000/users/provider/details/${params.id}`),
+  },
 
-  },
-   
   {
+<<<<<<< HEAD
       path : 'dashboard',
       element : <Dashboard></Dashboard>,
       children : [
@@ -116,8 +128,23 @@ export const router = createBrowserRouter([
         }
       ]
   }
+=======
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "userdashboard",
+        element: <UserDashboard></UserDashboard>,
+      },
+      {
+        path: "admindashboard",
+        element: <AdminDashboard></AdminDashboard>,
+      },
+      {
+        path: "providerdashboard",
+        element: <ProviderDashboard></ProviderDashboard>,
+      },
+    ],
+  },
+>>>>>>> d94574d6bd6d8e32706e5efad35e020ac444c4e2
 ]);
-
-
-
-

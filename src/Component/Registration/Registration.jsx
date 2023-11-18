@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react"
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
-import "./registration.css"
-import Navbar from "../Navbar/Navbar"
-import Footer from "../Footer/Footer"
-import { useForm } from "react-hook-form"
-import { AuthContext } from "../../Providers/AuthProviders"
-import Swal from "sweetalert2"
+import React, { useState, useEffect, useContext } from "react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import "./registration.css";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 function Registration() {
   const {
@@ -14,17 +14,17 @@ function Registration() {
     reset,
     formState: { errors },
     watch,
-  } = useForm()
+  } = useForm();
 
-  const { createUser, updateUserProfile } = useContext(AuthContext)
-  const location = useLocation()
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const location = useLocation();
 
-  const from = location.state?.form?.pathname || "/"
-  const navigate = useNavigate()
-  
-  const handlesignup = data => {
-    createUser(data.email, data.password).then(result => {
-      const loggedUser = result.user
+  const from = location.state?.form?.pathname || "/";
+  const navigate = useNavigate();
+
+  const handlesignup = (data) => {
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
       // console.log(loggedUser)
 
       updateUserProfile(data.name, data.photoURL)
@@ -42,7 +42,7 @@ function Registration() {
             user_lon: "",
             user_phone: data.phone,
             user_regYear: 2023,
-          }
+          };
           fetch("http://localhost:5000/users/signup", {
             method: "POST",
             headers: {
@@ -50,24 +50,24 @@ function Registration() {
             },
             body: JSON.stringify(saveUser),
           })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
               if (data.insertedId) {
-                reset()
+                reset();
                 Swal.fire({
                   position: "middle",
                   icon: "success",
                   title: "User created successfully.",
                   showConfirmButton: false,
                   timer: 1500,
-                })
-                navigate(from, { replace: true })
+                });
+                navigate(from, { replace: true });
               }
-            })
+            });
         })
-        .catch(error => console.log(error))
-    })
-  }
+        .catch((error) => console.log(error));
+    });
+  };
 
   return (
     <>
@@ -220,7 +220,7 @@ function Registration() {
       </div>
       <Footer></Footer>
     </>
-  )
+  );
 }
 
-export default Registration
+export default Registration;

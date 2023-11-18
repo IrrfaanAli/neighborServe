@@ -22,6 +22,7 @@ const Navbar = () => {
   console.log("user", isUser)
   // console.log(user);
 
+
   const handleLogOut = () => {
     logout()
       .then()
@@ -101,12 +102,21 @@ const Navbar = () => {
               Services
             </Link>
             {!user && (
+<<<<<<< HEAD
               <Link to={"/login"} className="text-xl ml-8 c1">
                 Log in
               </Link>
             )}
 
             {/* {user ? (
+=======
+              <Link to={"/reg"} className="text-xl ml-8 c1">
+                Sign Up
+              </Link>
+            )}
+
+            {user ? (
+>>>>>>> d94574d6bd6d8e32706e5efad35e020ac444c4e2
               <button className="text-xl mx-8" onClick={handleLogOut}>
                 LogOut
               </button>
@@ -114,8 +124,13 @@ const Navbar = () => {
               <Link to={"/login"} className="text-xl ml-8 mr-8 c1">
                 Log In
               </Link>
+<<<<<<< HEAD
             )} */}
             {/* {isAdmin && (
+=======
+            )}
+            {isAdmin && (
+>>>>>>> d94574d6bd6d8e32706e5efad35e020ac444c4e2
               <Link to={"/dashboard/admindashboard"} className="text-xl c1">
                 Dashboard
               </Link>
@@ -129,7 +144,11 @@ const Navbar = () => {
               <Link to={"/dashboard/userdashboard"} className="text-xl c1">
                 Dashboard
               </Link>
+<<<<<<< HEAD
             )} */}
+=======
+            )}
+>>>>>>> d94574d6bd6d8e32706e5efad35e020ac444c4e2
           </ul>
         </div>
 
@@ -147,6 +166,7 @@ const Navbar = () => {
             {user && (
               <div
                 className="relative cursor-pointer"
+<<<<<<< HEAD
                 // onMouseEnter={handleMouseEnter}
                 // onMouseLeave={handleMouseLeave}
               >
@@ -221,13 +241,31 @@ const Navbar = () => {
                                     <p className="text-gray-800">{user.displayName}</p>
                                 </div>
                             )} */}
+=======
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className="flex gap-2">
+                  <img
+                    className="rounded-full w-32 h-12 mr-12 border border-blue-500 "
+                    src={user.photoURL}
+                    alt=""
+                  />
+                </div>
+
+                {isHovering && (
+                  <div className="absolute transform -translate-x-1/2 bg-white shadow-lg rounded-lg py-2 px-4">
+                    <p className="text-gray-800">{user.displayName}</p>
+                  </div>
+                )}
+>>>>>>> d94574d6bd6d8e32706e5efad35e020ac444c4e2
               </div>
             )}
           </div>
         </div>
       </div>
     </div>
-  )
-}
-
-export default Navbar
+  );
+};
+// export const userData = user.email;
+export default Navbar;
