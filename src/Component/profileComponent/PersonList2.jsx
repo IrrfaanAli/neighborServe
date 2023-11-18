@@ -3,14 +3,34 @@ import ProfileComponent from "./ProfileComponent";
 import { AuthContext } from "../../Providers/AuthProviders";
 import BarLoader from "react-spinners/BarLoader";
 import { Link } from "react-router-dom";
+import { set } from "react-hook-form";
 
 function PersonList2({ searchString }) {
   const userId = localStorage.getItem("userID");
   const [recommendationValue, setRecommendationValue] = useState(0);
   const { user } = useContext(AuthContext);
   const isLoggedIn = !!userId; // Convert to a boolean
-  
+
   const [refreshKey, setRefreshKey] = useState(0);
+
+  const [index1, setIndex1] = useState(0);
+  const [index2, setIndex2] = useState(index1 + 5);
+  const [page, setPage] = useState(1);
+  const [pageLimit, setPageLimit] = useState(0);
+
+  const pageChange = () => {
+    setIndex1(index1 + 5);
+    setPage(page + 1);
+  };
+
+  const pageChange2 = () => {
+    setIndex1(Math.max(0, index1 - 5));
+    setPage(Math.max(1, page - 1));
+  };
+
+  useEffect(() => {
+    setIndex2(index1 + 5);
+  }, [index1]);
 
   const handleRefreshClick = () => {
     // Increment the key to trigger a re-render
@@ -32,7 +52,7 @@ function PersonList2({ searchString }) {
   const x = searchString;
 
   const apiUrl = `http://localhost:5000/providers/providers/${userId}/${x}`;
-  const apiUrlnew = `https://smart-recommendation-model.vercel.app/api/v1/hello?id=${userId}&category=${x}`;
+  const apiUrlnew = `http://127.0.0.1:5001/api/v1/hello?id=${userId}&category=${x}`;
   const [recommendationId, setRecommendationId] = useState(null);
 
   useEffect(() => {
@@ -44,16 +64,21 @@ function PersonList2({ searchString }) {
   }, []);
 
   useEffect(() => {
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setDataArray(data);
-        setInitialData(data); // Store the initial data
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [apiUrl]);
+    if (isLoggedIn) {
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          setDataArray(data);
+          const l = data.length;
+          console.log("page: " + l / 5);
+          setPageLimit(l / 5); // Assuming you want to set the page limit based on the data length
+          setInitialData(data); // Store the initial data
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [apiUrl, isLoggedIn]);
 
   const recommendation = async () => {
     setRecommendationValue(1);
@@ -73,7 +98,10 @@ function PersonList2({ searchString }) {
 
   useEffect(() => {
     // Fetch data based on recommendationId or recommendationValue
-    if (recommendationId !== null || recommendationValue === 1) {
+    if (
+      isLoggedIn &&
+      (recommendationId !== null || recommendationValue === 1)
+    ) {
       const apiUrlnew2 = `http://localhost:5000/providers/providersProfile?id=${recommendationId}`;
       fetch(apiUrlnew2)
         .then((response) => response.json())
@@ -84,7 +112,7 @@ function PersonList2({ searchString }) {
           console.error("Error fetching data:", error);
         });
     }
-  }, [recommendationId]);
+  }, [recommendationId, isLoggedIn]);
 
   const handleShowAllClick = () => {
     // Reset the recommendation state and show the initial results
@@ -129,21 +157,24 @@ function PersonList2({ searchString }) {
         data-tip="This recommendation system provides personalized suggestions to users based on their history and preferences"
       >
         <button
-          style={{ marginBottom: "10px", marginTop: "10px", color: "white" , whiteSpace: "nowrap"}}
+          style={{
+            marginBottom: "10px",
+            marginTop: "10px",
+            color: "white",
+            whiteSpace: "nowrap",
+          }}
           onClick={recommendation}
           className="btn btn-primary"
         >
           Smart Recommendation
         </button>
-       
-      </div> {recommendationValue === 1 && (
-          <p
-            style={{ marginTop: "5px", marginBottom: "5px", fontSize: "18px" }}
-          >
-            Recommended <span style={{ color: "#4C40ED" }}>{x}</span> for you
-          </p>
-        )}
-      {dataArray.slice(0, 5).map((person, personIndex) => (
+      </div>{" "}
+      {recommendationValue === 1 && (
+        <p style={{ marginTop: "5px", marginBottom: "5px", fontSize: "18px" }}>
+          Recommended <span style={{ color: "#4C40ED" }}>{x}</span> for you
+        </p>
+      )}
+      {dataArray.slice(index1, index2).map((person, personIndex) => (
         <ProfileComponent {...person} key={person.id} />
       ))}
       {recommendationValue === 1 && (
@@ -154,6 +185,42 @@ function PersonList2({ searchString }) {
         >
           Show All
         </button>
+      )}
+      {/* <button className="btn btn-primary" onClick={pageChange}>
+        asd
+      </button>{" "} */}
+      <br />
+      {recommendationValue !== 1 && (
+        <div
+          className="join"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          {page > 1 && (
+            <button
+              style={{ color: "#4C40ED" }}
+              className="join-item btn"
+              onClick={pageChange2}
+            >
+              «
+            </button>
+          )}
+          <button
+            style={{ color: "#4C40ED", backgroundColor: "#F2F2F2" }}
+            disabled
+            className="join-item btn"
+          >
+            Page {page}
+          </button>
+          {page < pageLimit && (
+            <button
+              style={{ color: "#4C40ED" }}
+              className="join-item btn"
+              onClick={pageChange}
+            >
+              »
+            </button>
+          )}
+        </div>
       )}
     </section>
   );

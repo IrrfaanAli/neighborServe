@@ -29,6 +29,12 @@ function Registration() {
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
+          const today = new Date();
+          const currentDate = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate()
+          );
           const saveUser = {
             user_fullname: data.name,
             user_email: data.email,
@@ -36,12 +42,12 @@ function Registration() {
             user_dob: "",
             user_gender: "",
             user_type: "user",
-            user_status: "",
+            user_status: "regular",
             user_location: "",
             user_lat: "",
             user_lon: "",
             user_phone: data.phone,
-            user_regYear: 2023,
+            user_regYear: currentDate.toLocaleDateString("en-US"),
           };
           fetch("http://localhost:5000/users/signup", {
             method: "POST",
@@ -53,6 +59,9 @@ function Registration() {
             .then((res) => res.json())
             .then((data) => {
               if (data.insertedId) {
+                const userId = data.insertedId;
+                localStorage.setItem("userID", userId);
+
                 reset();
                 Swal.fire({
                   position: "middle",

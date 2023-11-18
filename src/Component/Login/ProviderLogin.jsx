@@ -29,6 +29,12 @@ const ProviderLogin = () => {
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
+          const today = new Date();
+          const currentDate = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate()
+          );
           const saveUser = {
             user_fullname: data.name,
             user_email: data.email,
@@ -37,12 +43,12 @@ const ProviderLogin = () => {
             user_gender: "",
             user_type: "provider",
             user_category: data.category,
-            user_status: "",
+            user_status: "regular",
             user_location: data.area,
             user_lat: "",
             user_lon: "",
             user_phone: data.phone,
-            user_regYear: 2023,
+            user_regYear: currentDate.toLocaleDateString("en-US"),
             user_hireCount: "",
             user_verficationStatus: "",
             user_serviceDetails: "",
@@ -58,6 +64,9 @@ const ProviderLogin = () => {
             .then(res => res.json())
             .then(data => {
               if (data.insertedId) {
+                const userId = data.insertedId;
+                localStorage.setItem("userID", userId);
+                
                 reset()
                 Swal.fire({
                   position: "middle",
