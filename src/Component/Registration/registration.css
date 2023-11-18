@@ -15,8 +15,8 @@
       margin-bottom: 3%;
       display: flex;
      
-      width: 850px;
-      height: 513px;
+      width: 950px;
+      height: 550px;
       margin-left: auto;
       margin-right: auto;
   
@@ -69,10 +69,11 @@
       font-size: 14px;
       margin-top: 5px;
       width: 150px;
-      margin-right: 260px;
+      margin-right: 300px;
     }
     .reg-field {
       width: 80%;
+      height:50px;
       padding: 10px;
       margin: 5px;
       border: 1px solid #ccc;

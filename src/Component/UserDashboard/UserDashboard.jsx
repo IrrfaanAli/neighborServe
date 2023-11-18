@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import icon from '../../assets/photo-1.jpeg'
 import icon2 from '../../assets/icon.png'
+import { AuthContext } from '../../Providers/AuthProviders'
+
 
 const UserDashboard = () => {
+
+  const { user, logout } = useContext(AuthContext)
+
   return (
     <div className='p-4 lg:p-7 mt-24 lg:mt-4'>
           <div className='bg-secondary mx-auto w-[380px] h-[100px] lg:w-[1650px] lg:h-[150px] flex lg:flex-row flex-col-reverse  lg:p-5 justify-between '>
               <div >
-                <p className=' text-3xl lg:text-6xl font-semibold  p-4'>Hello,Karim</p>
+                <p className=' text-3xl lg:text-6xl font-semibold  p-4'>Hello, {user.displayName}</p>
                 <p className='p-2 text-2xl'>Today is Monday,9 October ,2023</p>
               </div>
               <div className='mb-5 lg:mr-12'>

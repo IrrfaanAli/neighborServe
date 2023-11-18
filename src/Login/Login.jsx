@@ -7,35 +7,35 @@ import Navbar from "../Component/Navbar/Navbar";
 import Footer from "../Component/Footer/Footer";
 
 function Login() {
-  const colors = [
-    "#efbbff",
-    "#d896ff",
-    "#be29ec",
-    "#7732A6",
-    "#4C40ED",
-    "#2E22AB",
-    "black",
-  ];
+  // const colors = [
+  //   "#efbbff",
+  //   "#d896ff",
+  //   "#be29ec",
+  //   "#7732A6",
+  //   "#4C40ED",
+  //   "#2E22AB",
+  //   "black",
+  // ];
 
   // Initialize the color index using the state
-  const [colorIndex, setColorIndex] = useState(0);
+  // const [colorIndex, setColorIndex] = useState(0);
 
   // Update the color every 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Calculate the next color index
-      setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
-    }, 700);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // Calculate the next color index
+  //     setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+  //   }, 700);
 
-    // Cleanup the interval to avoid memory leaks
-    return () => clearInterval(interval);
-  }, []);
+  //   // Cleanup the interval to avoid memory leaks
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div>
       <Navbar />
       <div>
-        <div className="l-container0">
+        <div className="l-container0 ">
           <div className="l-container1">
             <div>
               <p
@@ -103,8 +103,8 @@ function Login() {
                   fontSize: "20px",
                   fontWeight: "bold",
 
-                  color: colors[colorIndex],
-                  transition: "color 0.5s",
+                  // color: colors[colorIndex],
+                  // transition: "color 0.5s",
                 }}
               >
                 LOGIN TO YOUR ACCOUNT

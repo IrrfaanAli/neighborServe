@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../Navbar/Navbar";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import icon from "../../assets/mop.png";
+import { AuthContext } from "../../Providers/AuthProviders";
+import useAdmin from "../../hook/useAdmin";
+import useProvider from "../../hook/useProvider";
+import useUser from "../../hook/useUser";
 
 const Dashboard = () => {
+  const [isAdmin] = useAdmin()
+  const [isProvider] = useProvider()
+  const [isUser] = useUser()
+  const { user, logout } = useContext(AuthContext)
   return (
     <>
       <Navbar></Navbar>
@@ -29,10 +37,10 @@ const Dashboard = () => {
                 <div className="p-4 mb-10">
                   <img
                     className="w-16 h-16 mx-auto mb-3 rounded-full"
-                    src={icon}
+                    src={user?.photoURL}
                     alt=""
                   />
-                  <p className="text-center font-bold text-xl">Irfan Ali</p>
+                  <p className="text-center font-bold text-xl">{user?.displayName}</p>
                 </div>
 
                 <Link to={"/dashboard/userdashboard"}>
@@ -40,21 +48,42 @@ const Dashboard = () => {
                     DashBoard
                   </button>
                 </Link>
+                {isAdmin && 
                 <Link to={"/dashboard/adminmanageuser"}>
                   <button className="btn btn-outline btn-accent mb-5 w-36">
                     User List
                   </button>
                 </Link>
-                <Link to={"/dashboard/adminmanageuser"}>
+}                
+{isAdmin &&
+                <Link to={"/dashboard/adminmanageprovider"}>
                   <button className="btn btn-outline btn-accent mb-5 w-36">
-                    Verify User
+                    Provider List
                   </button>
                 </Link>
-                <Link to={"/dashboard/adminmanageuser"}>
+}
+   {isAdmin && 
+                <Link to={"/dashboard/adminverifyprovider"}>
+                  <button className="btn btn-outline btn-accent mb-5 w-36">
+                    Verify Provider 
+                  </button>
+                </Link>
+}
+{ isAdmin &&
+                <Link to={"/dashboard/adminmonitoruser"}>
                   <button className="btn btn-outline btn-accent mb-5 w-36">
                     User Monitor
                   </button>
                 </Link>
+}
+{ isUser &&
+                <Link to={"/dashboard"}>
+                  <button className="btn btn-outline btn-accent mb-5 w-36">
+                    Previous Work
+                  </button>
+                </Link>
+}
+
               </>
             }
           </ul>

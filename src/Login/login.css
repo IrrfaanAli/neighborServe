@@ -1,7 +1,7 @@
 .l-container0 {
   margin-top: 3%;
   display: flex;
-  width: 950px;
+  width: 1050px;
   height: 450px;
   background-image: url("./bg.jpg");
   background-size: cover;
@@ -14,7 +14,7 @@
 }
 
 .l-container1 {
-  width: 40%;
+  width: 60%;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   background-color: rgba(0, 0, 0, 0, 5);
