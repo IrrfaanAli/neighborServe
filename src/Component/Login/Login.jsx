@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useContext } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import "./login.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons"
-import { FcGoogle } from "react-icons/fc"
-import Navbar from "../Navbar/Navbar"
-import Footer from "../Footer/Footer"
-import { AuthContext } from "../../Providers/AuthProviders"
-import { useForm } from "react-hook-form"
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "./login.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FcGoogle } from "react-icons/fc";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
+import { AuthContext } from "../../Providers/AuthProviders";
+import { useForm } from "react-hook-form";
 
 function Login() {
+
   // const colors = [
   //   "#efbbff",
   //   "#d896ff",
@@ -21,29 +22,25 @@ function Login() {
   // ]
 
   // const [colorIndex, setColorIndex] = useState(0)
+
   const { googleSignIn } = useContext(AuthContext);
   const { userlogin } = useContext(AuthContext);
-    const [err, setErr] = useState('');
- 
+  const [err, setErr] = useState("");
 
-    const location = useLocation();
-  
+  const location = useLocation();
 
-
-    const from = location.state?.form?.pathname || '/';
-    const navigate = useNavigate();
+  const from = location.state?.form?.pathname || "/";
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
-    
-      setColorIndex(prevIndex => (prevIndex + 1) % colors.length)
-    }, 700)
+      setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+    }, 700);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLogIn = async (data) => {
-   
     data.preventDefault();
 
     const form = data.target;
@@ -53,40 +50,37 @@ function Login() {
     const password = form.password.value;
 
     userlogin(email, password)
-
-    .then(result => {
-        
-        navigate(from,{replace:true});
-    })
-    .catch(error => {
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
         setErr(error.message);
-    })
+      });
+  };
 
-}
-
-const handleGoogleSignIn = () => {
-    googleSignIn()
-        .then(result => {
-            const loggedInUser = result.user;
-            console.log(loggedInUser);
-            const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email,image : loggedInUser.photoURL,role : 'user'
-            }
-            fetch('http://localhost:5000/users/googlelogin', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(saveUser)
-            })
-                .then(res => res.json())
-                .then(() => {
-                    
-                    navigate(from, { replace: true });
-                })
-        })
-
-        
-    }
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      const saveUser = {
+        name: loggedInUser.displayName,
+        email: loggedInUser.email,
+        image: loggedInUser.photoURL,
+        role: "user",
+      };
+      fetch("http://localhost:5000/users/googlelogin", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+        });
+    });
+  };
 
   return (
     <>
@@ -164,7 +158,7 @@ const handleGoogleSignIn = () => {
                   <div className="input-container">
                     <input
                       type="email"
-                      name ="email"
+                      name="email"
                       placeholder="Enter email"
                       className="input-field"
                     />
@@ -202,12 +196,10 @@ const handleGoogleSignIn = () => {
                   >
                     Sign in
                   </button>
-                  
+
                   <div className="social-login text-center ">
-                 
-                      
-                      {/* <div className="divider w-72 ml-36"></div> */}
-                   
+                    {/* <div className="divider w-72 ml-36"></div> */}
+
                     <div className="social-icons">
                       {/* <FontAwesomeIcon
                         icon={faFacebook}
@@ -217,7 +209,6 @@ const handleGoogleSignIn = () => {
                         icon={faTwitter}
                         style={{ color: "#4386f9" }}
                       /> */}
-                      
                     </div>
                   </div>
                 </div>
@@ -235,7 +226,7 @@ const handleGoogleSignIn = () => {
       </div>
       <Footer></Footer>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

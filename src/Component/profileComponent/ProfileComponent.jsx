@@ -13,6 +13,7 @@ const ProfileComponent = (props) => {
     user_verficationStatus,
     user_img,
     user_icon,
+    user_rating,
   } = props;
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -52,36 +53,66 @@ const ProfileComponent = (props) => {
           <p style={{ fontWeight: "bold", fontSize: "22px", color: "black" }}>
             {user_fullname}
           </p>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className="pc-container3" >
+              <img
+                src="gps.svg"
+                alt="Icon Description"
+                style={{ width: "25px", height: "25px" }}
+              />
+              &nbsp;{user_location}
+            </div>
+
+            <div className="pc-container3">
+              <img
+                src="Time.svg"
+                alt="Icon Description"
+                style={{ width: "25px", height: "25px" }}
+              />
+              &nbsp;Member since {user_regYear}
+            </div>
+          
+
+          {/* <div className="pc-container3">
+            <img
+              src="trophy.svg"
+              alt="Icon Description"
+              style={{ width: "27px", height: "27px" }}
+              className="pp-container11"
+            />
+            &nbsp;
+            <p className="pp-container12" style={{ marginLeft: "-0.4%" }}>
+              Hired {user_hireCount} times
+            </p>
+          </div>{" "} */}
           <div className="pc-container3">
             <img
-              src="location-pinned.png"
-              alt="Icon Description"
-              style={{ width: "25px", height: "25px" }}
+              style={{ height: "25px", width: "25px" }}
+              src="v.svg"
+              alt=""
             />
-            &nbsp;{user_location}
+            {/* <Icon_info index={user_icon} /> */}
+           
+            <p style={{ marginTop:"0.5%" }}> &nbsp;{user_verficationStatus}&nbsp;{" "} Verified</p>
           </div>
-          <div className="pc-container3">
-            <img
-              src="Time.png"
-              alt="Icon Description"
-              style={{ width: "25" }}
-            />
-            &nbsp;Member since {user_regYear}
+         
+         
+          <div
+            className="pc-container3"
+            style={{ marginTop:"-0.5%" }}
+          >
+            <img style={{ height: "25px", width: "25px" }} src="./Star.svg" alt="" />
+            &nbsp;
+            <p className="pp-container12" style={{ marginTop:"0.8%" }}>
+              {user_rating} <span > star rated</span>
+            </p>
+            &nbsp;{" "}
           </div>
-          <div className="pc-container3">
-            <img
-              src="trophy.png"
-              alt="Icon Description"
-              style={{ width: "25" }}
-            />
-            &nbsp;Hired {user_hireCount} times
-          </div>{" "}
-          <div className="pc-container3">
-            <Icon_info index={user_icon} />
-            &nbsp;{user_verficationStatus}&nbsp;{" "}
-            <p style={{ fontWeight: "bold", color: "#4C40ED" }}> Verified</p>
-          </div>
+
+
           <div>
+          </div>
             <p className="pc-container4" style={{ backgroundColor: "#F9EFFB" }}>
               &nbsp;&nbsp;Featured Comment: Mr Khan says “Great
               professional”&nbsp;&nbsp;

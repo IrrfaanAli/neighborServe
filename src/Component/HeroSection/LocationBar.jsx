@@ -10,50 +10,50 @@ const LocationBar = () => {
   const [address, setAddress] = useState(null);
   const [isLocationFetched, setLocationFetched] = useState(false);
 
+  const userEmail = localStorage.getItem("userEmail");
   const userId = localStorage.getItem("userID");
+  console.log("id:"+userId);
 
-  const handleFindProsClick = () => {
+  const handleFindProsClick = async () => {
     if (!isLocationFetched) {
       setLocationFetched(true);
+
       const apiKey = "pk.abc469b9f78bca652e6cedf09705e250";
 
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        async (position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
-          const apiUrl = `https://us1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`;
-          fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => {
-              const fullAddress = data.display_name;
-              const dhakaIndex = fullAddress.indexOf("Dhaka");
-              const slicedAddress =
-                dhakaIndex !== -1
-                  ? fullAddress.slice(0, dhakaIndex + "Dhaka".length)
-                  : fullAddress;
-              const userAddress = slicedAddress;
-              setAddress(userAddress);
 
-              console.log(userId + " " + userAddress);
-              const apiUrl1 = `http://localhost:5000/providers/update_location/${userId}`;
-              const data1 = {
-                user_lat: position.coords.latitude,
-                user_lon: position.coords.longitude,
-                user_location: userAddress,
-              };
+          try {
+            // Fetch userId from the backend based on the user's email
+            // const userId = data[0]._id; // Assuming you have a single userId associated with the email
+            const apiUrl1 = `http://localhost:5000/providers/update_location/${userId}`;
+            const userAddress = await fetchUserAddress(
+              apiKey,
+              position.coords.latitude,
+              position.coords.longitude
+            );
 
-              axios
-                .patch(apiUrl1, data1)
-                .then((response) => {
-                  console.log(response.data);
-                })
-                .catch((error) => {
-                  console.error(error);
-                });
-            })
-            .catch((error) => {
-              console.error("Error fetching address:", error);
-            });
+            setAddress(userAddress);
+
+            const data1 = {
+              user_lat: position.coords.latitude,
+              user_lon: position.coords.longitude,
+              user_location: userAddress,
+            };
+
+            axios
+              .patch(apiUrl1, data1)
+              .then((response) => {
+                console.log(response.data);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          } catch (error) {
+            console.error("Error fetching userId:", error);
+          }
         },
         (error) => {
           console.error("Error getting geolocation:", error);
@@ -61,6 +61,25 @@ const LocationBar = () => {
       );
     }
   };
+
+  const fetchUserAddress = async (apiKey, latitude, longitude) => {
+    const apiUrl = `https://us1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${latitude}&lon=${longitude}&format=json`;
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      const fullAddress = data.display_name;
+      const dhakaIndex = fullAddress.indexOf("Dhaka");
+      const slicedAddress =
+        dhakaIndex !== -1
+          ? fullAddress.slice(0, dhakaIndex + "Dhaka".length)
+          : fullAddress;
+      return slicedAddress;
+    } catch (error) {
+      console.error("Error fetching address:", error);
+      return null;
+    }
+  };
+
   return (
     <div>
       <div>
@@ -98,7 +117,6 @@ const LocationBar = () => {
                 disabled
                 type="text"
                 value={address}
-                // onChange={(e) => setUserLocation(e.target.value)}
               />
             ) : (
               <p style={{ color: "#B7C8E6", marginLeft: "2%" }}>
