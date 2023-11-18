@@ -7,7 +7,7 @@ const useUser = () => {
  
     const {data: isUser, isLoading: isUserLoading} = useQuery({
         queryKey: ['isUser', user?.email],
-        // enabled: loading,
+         enabled: loading,
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/users/user/${user?.email}`)
             

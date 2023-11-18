@@ -125,7 +125,7 @@ function Registration() {
                 >
                   CREATE AN ACCOUNT
                 </p>
-                <div className="r-underline"></div>
+                
 
                 <div className="reg-container">
                   <div className="reg-label">Full Name </div>
@@ -150,9 +150,9 @@ function Registration() {
                     className="reg-field"
                   />
                   {errors.phone && (
-                    <span className="text-red-600">
+                    <p className="text-red-600">
                       Phone Number is required
-                    </span>
+                    </p>
                   )}
 
                   <div className="reg-label">Email</div>
@@ -164,7 +164,7 @@ function Registration() {
                     className="reg-field"
                   />
                   {errors.email && (
-                    <span className="text-red-600">Email is required</span>
+                    <p className="text-red-600">Email is required</p>
                   )}
 
                   <div className="reg-label">Password</div>
@@ -202,7 +202,7 @@ function Registration() {
                     marginLeft: "auto",
                     marginRight: "auto",
                     justifyContent: "center",
-                    marginTop: "10px",
+                    marginTop: "3px",
                     width: "30%",
                     padding: "10px",
                     border: "1px",

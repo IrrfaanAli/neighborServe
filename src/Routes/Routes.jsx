@@ -19,6 +19,9 @@ import ProviderAccountDetails from "../Component/ProviderAccountDetails/Provider
 import Login from "../Component/Login/Login";
 import Registration from "../Component/Registration/Registration";
 import ProviderLogin from "../Component/Login/ProviderLogin";
+import AdminManageuser from "../Component/AdminDashboard/AdminManageuser";
+import Adminmanageprovider from "../Component/AdminDashboard/Adminmanageprovider";
+import AdminVerifyProvider from "../Component/AdminDashboard/AdminVerifyProvider";
 
 export const router = createBrowserRouter([
   {
@@ -97,6 +100,19 @@ export const router = createBrowserRouter([
         {
           path: 'providerdashboard',
           element : <ProviderDashboard></ProviderDashboard>
+        },
+        {
+           path : 'adminmanageuser',
+           element : <AdminManageuser></AdminManageuser>
+        },
+        {
+           path : 'adminmanageprovider',
+           element : <Adminmanageprovider></Adminmanageprovider>
+        },
+        
+        {
+           path : 'adminverifyprovider',
+           element : <AdminVerifyProvider></AdminVerifyProvider>
         }
       ]
   }
