@@ -50,6 +50,8 @@ const LocationBar = () => {
                 .catch((error) => {
                   console.error(error);
                 });
+
+                
             })
             .catch((error) => {
               console.error("Error fetching address:", error);

@@ -10,7 +10,6 @@ import Footer from './Component/Footer/Footer'
 import { HeroSection } from './Component/HeroSection/HeroSection'
 import Navbar from './Component/Navbar/Navbar'
 import OfferCard from './Component/OfferCard/OfferCard'
-
 function App() {
   return (
 

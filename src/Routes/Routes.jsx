@@ -18,8 +18,18 @@ import ProviderAccountDetails from "../Component/ProviderAccountDetails/Provider
 import Login from "../Component/Login/Login";
 import Registration from "../Component/Registration/Registration";
 import ProviderLogin from "../Component/Login/ProviderLogin";
+import Verification from "../Verification";
+import VerificationTesting from "../VerificationTesting";
 
 export const router = createBrowserRouter([
+  {
+    path: "verification",
+    element: <Verification></Verification>,
+  },
+  {
+    path: "verificationTesting",
+    element: <VerificationTesting></VerificationTesting>,
+  },
   {
     path: "/",
     element: <App></App>,

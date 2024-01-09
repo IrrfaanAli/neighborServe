@@ -154,7 +154,7 @@ function Registration() {
                       Phone Number is required
                     </span>
                   )}
-
+                  
                   <div className="reg-label">Email</div>
                   <input
                     type="text"
